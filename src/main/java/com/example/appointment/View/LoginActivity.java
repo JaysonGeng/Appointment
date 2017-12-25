@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .add("password",password)
                         .add("","login")
                         .build();
-                HttpUtil.sendOkHttpRequest(requestBody, new Callback() {
+                HttpUtil.sendOkHttpRequest("/Appointment/LoginServlet",requestBody, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         Toast.makeText(LoginActivity.this,"服务器连接失败",Toast.LENGTH_LONG).show();
@@ -148,8 +148,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
 
-
-                if(pref.getBoolean("valid",false)){
+                if(pref.getBoolean("valid",true)){
                     if (rememberPass.isChecked()){
                         editor.putBoolean("remember_password",true);
                         editor.putString("username",username);

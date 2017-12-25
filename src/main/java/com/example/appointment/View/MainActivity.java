@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appointment.Adapter.UserAdapter;
 import com.example.appointment.Dao.ActivityCollector;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MediaPlayer player;
     private List<User> userList = new ArrayList<>();
     private UserAdapter userAdapter;
+    private long firstClickBack = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,6 +300,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //删除该活动
         ActivityCollector.removeActivity(this);
         player.stop();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            long secondClickBack = System.currentTimeMillis();
+            if (secondClickBack - firstClickBack > 1500){
+                Toast.makeText(MainActivity.this,"再次点击返回以退出",Toast.LENGTH_SHORT).show();
+                firstClickBack = secondClickBack;
+                return true;
+            }else {
+                finish();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode,event);
     }
 
     //更新朋友列表数据

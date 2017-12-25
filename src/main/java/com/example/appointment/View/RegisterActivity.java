@@ -156,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .add("mailbox_address",mailbox_address.getText().toString())
                                     .add("","register")
                                     .build();
-                            HttpUtil.sendOkHttpRequest(requestBody, new Callback() {
+                            HttpUtil.sendOkHttpRequest("/Appointment/RegisterServlet",requestBody, new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
                                     Toast.makeText(RegisterActivity.this,"服务器连接失败",Toast.LENGTH_LONG).show();
