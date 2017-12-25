@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
+
                 if(pref.getBoolean("valid",false)){
                     if (rememberPass.isChecked()){
                         editor.putBoolean("remember_password",true);
