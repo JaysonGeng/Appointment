@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.appointment.View.UserAgreementShowActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_UserAgreementShow"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbarbackground"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1.此产品为约活动应用，旨在帮助用户很好的参与某些活动，同时也可以拓展朋友圈;"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.本产品为组队平台，只是提供一个约活动的平台，提供给具有相同活动目的的双方一个交流的机会，但是平台并不提供约活动成功之后的活动进行计划，双方可在平台进行交流，但平台不会干涉双方，双方后续行为与本平台无关;"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3.双方在相约活动时请保持言语文明，避免冲突"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4.产品的最终解释权归山东大学学生在线所有"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buttonbarbackground"
+            android:text="您已同意上述内容"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

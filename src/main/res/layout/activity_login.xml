@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/transition"
+    tools:context="com.example.appointment.View.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/transition_linear_layout_Login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/loginbackground"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_Login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="账号:"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/username_edit_text_Login"
+                    android:layout_width="220dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="120dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="密码:"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/password_edit_text_Login"
+                    android:inputType="textPassword"
+                    android:layout_width="220dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="120dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <CheckBox
+                    android:id="@+id/remember_password_checkbox_Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"/>
+
+                <TextView
+                    android:id="@+id/save_text_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/remember_password_checkbox_Login"
+                    android:layout_centerVertical="true"
+                    android:text="保存密码" />
+
+                <CheckBox
+                    android:id="@+id/auto_login_checkbox_Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/textView1"/>
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="自动登录"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/login_button_Login"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#4C00CFFF"
+                android:text="登     录"
+                android:textColor="#00008F"
+                android:textSize="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="90dp"
+                    android:text="还没有账号？请" />
+
+                <TextView
+                    android:id="@+id/register_text_view_Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/textView2"
+                    android:text="注册新账户"
+                    android:textColor="@color/colorPrimary"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/forget_password_text_view_Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="忘记密码？"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
