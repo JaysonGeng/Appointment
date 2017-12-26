@@ -21,6 +21,7 @@ import com.example.appointment.Util.HttpUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -146,50 +147,47 @@ public class RegisterActivity extends AppCompatActivity {
             case R.id.finish:
                 if (isinputvalid()){
                     if(ispasswordconsistent()){
-                            final RequestBody requestBody = new FormBody.Builder()
-                                    .add("student_id",student_id.getText().toString())
-                                    .add("name",name.getText().toString())
-                                    .add("campus",pref.getString("campus",""))
-                                    .add("sex",pref.getString("sex",""))
-                                    .add("nickname",nickname.getText().toString())
-                                    .add("password",password.getText().toString())
-                                    .add("mailbox_address",mailbox_address.getText().toString())
-                                    .add("","register")
-                                    .build();
-                            HttpUtil.sendOkHttpRequest("/Appointment/RegisterServlet",requestBody, new Callback() {
-                                @Override
-                                public void onFailure(Call call, IOException e) {
-                                    Toast.makeText(RegisterActivity.this,"服务器连接失败",Toast.LENGTH_LONG).show();
-                                }
+//                            final RequestBody requestBody = new FormBody.Builder()
+//                                    .add("student_id",student_id.getText().toString())
+//                                    .add("name",name.getText().toString())
+//                                    .add("campus",pref.getString("campus",""))
+//                                    .add("sex",pref.getString("sex",""))
+//                                    .add("nickname",nickname.getText().toString())
+//                                    .add("password",password.getText().toString())
+//                                    .add("mailbox_address",mailbox_address.getText().toString())
+//                                    .add("","register")
+//                                    .build();
+//                            HttpUtil.sendOkHttpRequest("/Appointment/RegisterServlet",requestBody, new Callback() {
+//                                @Override
+//                                public void onFailure(Call call, IOException e) {
+//                                    Toast.makeText(RegisterActivity.this,"服务器连接失败1",Toast.LENGTH_LONG).show();
+//                                }
+//
+//                                @Override
+//                                public void onResponse(Call call, Response response) throws IOException {
+//                                    String responseData = response.body().string();
+//                                    switch (responseData){
+//                                        case "Y":
 
-                                @Override
-                                public void onResponse(Call call, Response response) throws IOException {
-                                    String responseData = response.body().string();
-                                    switch (responseData){
-                                        case "Y":
+//                                            break;
+//                                        case "N":
 
-                                            break;
-                                        case "N":
-
-                                            break;
-                                        default:
-                                            editor = pref.edit();
-                                            editor.putString("state","服务器连接失败");
-                                            editor.apply();
-                                    }
-                                }
-                            });
-                            Toast.makeText(RegisterActivity.this,pref.getString("state",""),Toast.LENGTH_LONG).show();
-                            editor.clear();
-                            editor.apply();
+//                                            break;
+//                                        default:
+//                                            editor = pref.edit();
+//                                            editor.putString("state","服务器连接失败");
+//                                            editor.apply();
+//                                    }
+//                                }
+//                            });
+//                            Toast.makeText(RegisterActivity.this,pref.getString("state",""),Toast.LENGTH_LONG).show();
+//                            editor.clear();
+//                            editor.apply();
                             finish();
                     }
                     else {
                         Toast.makeText(RegisterActivity.this,"密码不一致",Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
-                    Toast.makeText(RegisterActivity.this,"信息未填写完全",Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -203,16 +201,51 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isinputvalid(){
-        boolean a = !student_id.getText().toString().equals("");
-        boolean b = !name.getText().toString().equals("");
+        boolean a = Pattern.matches("^20[0-9]{10}$",student_id.getText().toString());
+        boolean b = Pattern.matches("^[\u4e00-\u9fa5]{2,}$",name.getText().toString());
         boolean c = !pref.getString("campus","").equals("");
         boolean d = !pref.getString("sex","").equals("");
         boolean e = !nickname.getText().toString().equals("");
         boolean f = !password.getText().toString().equals("");
-        boolean g = !password_again.getText().toString().equals("");
-        boolean h = !mailbox_address.getText().toString().equals("");
-        return a&&b&&c&&d&&e&&f&&g&&h;
+        boolean g = Pattern.matches("^([a-zA-Z0-9]+[-|_|\\.]?)+[a-zA-Z0-9]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$",mailbox_address.getText().toString());
+        if(a){
+            if(b){
+                if(c){
+                    if(d){
+                        if(e){
+                            if(f){
+                                if(g){
+                                    return true;
+                                }else {
+                                    Toast.makeText(RegisterActivity.this,"邮箱格式不正确",Toast.LENGTH_SHORT).show();
+                                    return false;
+                                }
+                            }else {
+                                Toast.makeText(RegisterActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
+                                return false;
+                            }
+                        }else {
+                            Toast.makeText(RegisterActivity.this,"昵称不能为空",Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                    }else {
+                        Toast.makeText(RegisterActivity.this,"请选择你的性别",Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }else {
+                    Toast.makeText(RegisterActivity.this,"请选择你的校区",Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else {
+                Toast.makeText(RegisterActivity.this,"姓名填写有误",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }else {
+            Toast.makeText(RegisterActivity.this,"学号填写有误",Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
+
 
     private boolean ispasswordconsistent(){
         return password_again.getText().toString().equals(password.getText().toString());

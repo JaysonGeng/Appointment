@@ -226,6 +226,7 @@
                     android:id="@+id/password_edit_text_Register"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="40dp"
                     android:layout_centerVertical="true"/>
@@ -263,6 +264,7 @@
                     android:id="@+id/password_again_edit_text_Register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="40dp"
                     android:layout_centerVertical="true"/>

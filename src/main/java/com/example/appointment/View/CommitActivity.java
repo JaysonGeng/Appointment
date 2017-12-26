@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.appointment.R;
+
+import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class CommitActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -81,11 +85,91 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view){
         switch (view.getId()){
             case R.id.select_photo_image_view_Commit:
-
                 break;
             case R.id.commit_button_Commit:
-                finish();
+                if(isInputValid()){
+                    //
+                    finish();
+                }
                 break;
         }
     }
+
+    private boolean isInputValid(){
+        boolean a = Pattern.matches("^[\u4e00-\u9fa50-9a-zA-Z]{2,}$",title.getText().toString());
+        boolean b = !place.getText().toString().equals("");
+        if(a){
+            if (b){
+                try {
+                    int y = Integer.parseInt(year.getText().toString());
+                    int m = Integer.parseInt(month.getText().toString());
+                    int d = Integer.parseInt(day.getText().toString());
+                    return isDateValid(y,m,d);
+                }catch (NumberFormatException e){
+                    Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else {
+                Toast.makeText(CommitActivity.this,"请输入活动地点",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }else {
+            Toast.makeText(CommitActivity.this,"活动名不规范",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    private boolean isDateValid(int y,int m,int d){
+        Calendar now = Calendar.getInstance();
+        if(y>now.get(Calendar.YEAR)){
+            if(y==now.get(Calendar.YEAR)+1){
+                if(m>0&&m<13){
+                    if (d>0&&d<32){
+                        return true;
+                    }else {
+                        Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }else {
+                    Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else {
+                Toast.makeText(CommitActivity.this,"日期过于遥远",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }else {
+            if (y==now.get(Calendar.YEAR)){
+                if(m>0&&m<13){
+                    if(m>now.get(Calendar.MONTH)){
+                        if (d>0&&d<32){
+                            return true;
+                        }else {
+                            Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                    }else {
+                        if(m==now.get(Calendar.MONTH)){
+                            if(d>=now.get(Calendar.DATE)&&d<32){
+                                return true;
+                            }else {
+                                Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                                return false;
+                            }
+                        }else {
+                            Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                    }
+                }else {
+                    Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else {
+                Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+    }
+
 }

@@ -117,56 +117,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()){
             case R.id.login_button_Login:
+                //按钮动画
                 OnClickView.click_big(login);
+                //获取EditView中的内容
                 String username = usernameInputting.getText().toString();
                 String password = passwordInputting.getText().toString();
-                final RequestBody requestBody = new FormBody.Builder()
-                        .add("username",username)
-                        .add("password",password)
-                        .add("","login")
-                        .build();
-                HttpUtil.sendOkHttpRequest("/Appointment/LoginServlet",requestBody, new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        Toast.makeText(LoginActivity.this,"服务器连接失败",Toast.LENGTH_LONG).show();
-                    }
+//                final RequestBody requestBody = new FormBody.Builder()
+//                        .add("username",username)
+//                        .add("password",password)
+//                        .add("","login")
+//                        .build();
+//                HttpUtil.sendOkHttpRequest("/Appointment/LoginServlet",requestBody, new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        Toast.makeText(LoginActivity.this,"服务器连接失败",Toast.LENGTH_LONG).show();
+//                    }
 
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String responseData = response.body().string();
-                        switch (responseData){
-                            case "Y":
-                                editor.putBoolean("valid",true);
-                                editor.apply();
-                                break;
-                            case "N":
-                                editor.putBoolean("valid",false);
-                                editor.apply();
-                                break;
-                            default:
-                        }
-                    }
-                });
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        String responseData = response.body().string();
+//                        switch (responseData){
+//                            case "Y":
+//                                editor.putBoolean("valid",true);
+//                                editor.apply();
+//                                break;
+//                            case "N":
+//                                editor.putBoolean("valid",false);
+//                                editor.apply();
+//                                break;
+//                            default:
+//                       }
+//                    }
+//                });
 
-                if(pref.getBoolean("valid",true)){
+//                if(pref.getBoolean("valid",false)){
+                    //记住密码
                     if (rememberPass.isChecked()){
                         editor.putBoolean("remember_password",true);
                         editor.putString("username",username);
                         editor.putString("password",password);
                     }
                     else editor.putBoolean("remember_password",false);
+                    //自动登录
                     if(autoLogin.isChecked()){
                         editor.putBoolean("auto_login",true);
                     }
                     else editor.putBoolean("auto_login",false);
                     editor.putString("account",username);
                     editor.apply();
+                    //星空效果动画
                     animationSet = new AnimationSet(true);
                     alphaAnimation = new AlphaAnimation(1,0);
                     alphaAnimation.setDuration(1600);
                     animationSet.addAnimation(alphaAnimation);
                     transition.startAnimation(animationSet);
-
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -179,10 +183,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                         }
                     },1600);
-                }
-                else {
-                    Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
-                }
+//                }
+//                else {
+//                    Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+//                }
                 break;
             case R.id.register_text_view_Login:
                 intent.setClass(LoginActivity.this,RegisterActivity.class);
