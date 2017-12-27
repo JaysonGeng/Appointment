@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appointment">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".core.ImApp"
+        android:name="com.example.appointment.core.ImApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -63,8 +63,7 @@
             android:name=".View.OurInformationActivity"
             android:label="关于我们" />
         <activity android:name=".View.UserDetailActivity" />
-        <activity android:name=".View.LogoActivity" />
-        <activity android:name=".page.Main"></activity>
+        <activity android:name=".View.LogoActivity"></activity>
     </application>
 
 </manifest>
