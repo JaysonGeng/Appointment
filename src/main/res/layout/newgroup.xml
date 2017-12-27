@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xx_logo"
+    android:orientation="horizontal"
+        android:padding="30dip" >
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:background="@drawable/login_back"
+        android:orientation="vertical"
+          android:layout_gravity="center" >
+                         <TextView 
+        android:id="@+id/group_error_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#EA5246"
+        android:layout_gravity="center"
+        android:text="请输入您要新建的群的名称和简介"
+        android:textSize="15dp"/>
+          
+                <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+            	android:layout_gravity="center" >
+            	
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="群名称" />
+            
+                                    <EditText
+                android:id="@+id/newgroup_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                                android:background="@drawable/qq_edit_login"
+                android:lines="1" />
+
+                </LinearLayout>
+                    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+            	android:layout_gravity="center" >
+                                    
+                        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="群简介" />
+
+                                    <EditText
+                android:id="@+id/newdecsribe_field"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/qq_edit_login" />
+           </LinearLayout>
+                  <Button
+                android:id="@+id/newgroup_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+               android:padding="10dip"
+	    		android:text="建立" />
+          </LinearLayout>
+
+            
+</LinearLayout>

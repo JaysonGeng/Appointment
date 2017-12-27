@@ -1,29 +1,31 @@
 
-//´«ÊäĞÅÏ¢µÄÀàĞÍ
+//ä¼ è¾“ä¿¡æ¯çš„ç±»å‹
 
 package com.example.appointment.message;
 
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 
 public class AMessageType {
 
-	public static final String MSG_TYPE_ZHUCE = "zhuce";				// ×¢²á
-	public static final String MSG_TYPE_USERSIGN = "sign";				//ÓÃ»§ĞŞ¸ÄÇ©Ãû
-	public static final String MSG_TYPE_NEWGROUP = "newgroup";			//ĞÂ½¨Èº×é
-	public static final String MSG_TYPE_NEWPLAN = "newplan";			//ĞÂ½¨»î¶¯
-	public static final String MSG_TYPE_LOGIN = "login";				// µÇÂ¼
-	public static final String MSG_TYPE_LOGOUT = "logout";				// ÍË³ö
-	public static final String MSG_TYPE_CHAT_P2P = "chatp2p";			// Ë½ÁÄ
-	public static final String MSG_TYPE_CHAT_ROOM = "chatroom";			// ÈºÁÄ
-	public static final String MSG_TYPE_ONLINE = "online";				// ÉÏÏß
-	public static final String MSG_TYPE_SUCCESS = "success";			//³É¹¦
-	public static final String MSG_TYPE_BUDDYLIST = "buddylist";		// ºÃÓÑÁĞ±í
-	public static final String MSG_TYPE_GROUPLIST = "grouplist";		//Èº×éÁĞ±í
-	public static final String MSG_TYPE_PLANLIST = "planlist";			//»î¶¯ÁĞ±í
-	public static final String MSG_TYPE_ADDFRIEND= "addfriend";			//Ìí¼ÓºÃÓÑ
-	public static final String MSG_TYPE_ADDGROUP= "addgroup";			//Ìí¼ÓÈº×é
-	public static final String MSG_TYPE_ADDPLAN= "addplan";				//Ìí¼Ó»î¶¯
-	public static final String MSG_TYPE_PLANPOSITION= "planposition";	//ĞŞ¸Ä»î¶¯µØÖ·
-	public static final String MSG_TYPE_FAIL = "fail";					// Ê§°Ü
+	public static final String MSG_TYPE_ZHUCE = "zhuce";				// æ³¨å†Œ
+	public static final String MSG_TYPE_USERSIGN = "sign";				//ç”¨æˆ·ä¿®æ”¹ç­¾å
+	public static final String MSG_TYPE_NEWGROUP = "newgroup";			//æ–°å»ºç¾¤ç»„
+	public static final String MSG_TYPE_NEWPLAN = "newplan";			//æ–°å»ºæ´»åŠ¨
+	public static final String MSG_TYPE_LOGIN = "login";				// ç™»å½•
+	public static final String MSG_TYPE_LOGOUT = "logout";				// é€€å‡º
+	public static final String MSG_TYPE_CHAT_P2P = "chatp2p";			// ç§èŠ
+	public static final String MSG_TYPE_CHAT_ROOM = "chatroom";			// ç¾¤èŠ
+	public static final String MSG_TYPE_ONLINE = "online";				// ä¸Šçº¿
+	public static final String MSG_TYPE_SUCCESS = "success";			//æˆåŠŸ
+	public static final String MSG_TYPE_BUDDYLIST = "buddylist";		// å¥½å‹åˆ—è¡¨
+	public static final String MSG_TYPE_GROUPLIST = "grouplist";		//ç¾¤ç»„åˆ—è¡¨
+	public static final String MSG_TYPE_PLANLIST = "planlist";			//æ´»åŠ¨åˆ—è¡¨
+	public static final String MSG_TYPE_ADDFRIEND= "addfriend";			//æ·»åŠ å¥½å‹
+	public static final String MSG_TYPE_ADDGROUP= "addgroup";			//æ·»åŠ ç¾¤ç»„
+	public static final String MSG_TYPE_ADDPLAN= "addplan";				//æ·»åŠ æ´»åŠ¨
+	public static final String MSG_TYPE_PLANPOSITION= "planposition";	//ä¿®æ”¹æ´»åŠ¨åœ°å€
+	public static final String MSG_TYPE_FAIL = "fail";					// å¤±è´¥
 
 }

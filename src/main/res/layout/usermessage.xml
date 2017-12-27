@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/usermain"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#026464"
+        android:padding="20dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="20dip">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/ic_launcher">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="30sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/usernumber_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="48dp"
+            android:id="@+id/i1"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@drawable/p_center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/i1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="11dp"
+            android:text="帐号"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/usernumber_text"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/usersign_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:id="@+id/i2"
+            android:src="@drawable/p_center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/i2"
+            android:id="@+id/k2"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="11dp"
+            android:text="个性签名"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/usersign_text"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/k2"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/other_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:id="@+id/i3"
+            android:src="@drawable/p_center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/i3"
+            android:text="其他资料"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="11dp"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="11dp"
+            android:text="我还没加上"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/user_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>

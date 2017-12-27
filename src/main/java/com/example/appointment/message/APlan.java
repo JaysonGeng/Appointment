@@ -1,16 +1,18 @@
 
-//ÃèÊö»î¶¯ĞÅÏ¢µÄÀà
+//æè¿°æ´»åŠ¨ä¿¡æ¯çš„ç±»
 
 package com.example.appointment.message;
 
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 
 public class APlan extends ProtocalObj {
-	public long number;			// »î¶¯ºÅÂë
-	public String name = "";	// »î¶¯Ãû³Æ
-	public String position="";	//»î¶¯µØµã
-	public String describe="";	//»î¶¯½éÉÜ
-	public int avatar;			// Í·Ïñ(Î´ÓÃ)
-	public String member="";	//²ÎÓë³ÉÔ±µÄÕÊºÅ
-	public String time="";		//»î¶¯Ê±¼ä(±¾°æ±¾²¢²»ÍêÉÆ)
+	public long number;			// æ´»åŠ¨å·ç 
+	public String name = "";	// æ´»åŠ¨åç§°
+	public String position="";	//æ´»åŠ¨åœ°ç‚¹
+	public String describe="";	//æ´»åŠ¨ä»‹ç»
+	public int avatar;			// å¤´åƒ(æœªç”¨)
+	public String member="";	//å‚ä¸æˆå‘˜çš„å¸å·
+	public String time="";		//æ´»åŠ¨æ—¶é—´(æœ¬ç‰ˆæœ¬å¹¶ä¸å®Œå–„)
 }

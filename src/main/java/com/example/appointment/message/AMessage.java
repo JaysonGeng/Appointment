@@ -1,17 +1,19 @@
 
-//´æ´¢´«ÊäµÄĞÅÏ¢µÄÀà
+//å­˜å‚¨ä¼ è¾“çš„ä¿¡æ¯çš„ç±»
 
 package com.example.appointment.message;
 
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class AMessage extends ProtocalObj 
 {
-	public String type = AMessageType.MSG_TYPE_CHAT_P2P;// ĞÅÏ¢ÀàĞÍ
-	public long from = 0;// ·¢ËÍÕß ÕÊºÅ
-	public String fromName = "";// êÇ³Æ
-	public int fromAvatar = 1;// Í·Ïñ(±¾°æ±¾ÔİÎ´ÓÃµ½)
-	public long to = 0; // ½ÓÊÕÕß ÕÊºÅ
-	public String content = ""; // ÏûÏ¢µÄÄÚÈİ
-	public String sendTime = MyTime.geTime(); // ·¢ËÍÊ±¼ä
+	public String type = AMessageType.MSG_TYPE_CHAT_P2P;// ä¿¡æ¯ç±»å‹
+	public long from = 0;// å‘é€è€… å¸å·
+	public String fromName = "";// æ˜µç§°
+	public int fromAvatar = 1;// å¤´åƒ(æœ¬ç‰ˆæœ¬æš‚æœªç”¨åˆ°)
+	public long to = 0; // æ¥æ”¶è€… å¸å·
+	public String content = ""; // æ¶ˆæ¯çš„å†…å®¹
+	public String sendTime = MyTime.geTime(); // å‘é€æ—¶é—´
 	public String emoji="";
 }

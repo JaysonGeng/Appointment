@@ -1,9 +1,11 @@
 
-//描述群组信息的类
+//鎻忚堪缇ょ粍淇℃伅鐨勭被
 
 package com.example.appointment.message;
 
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class GroupInfo {
 	public long number;
 	public int avatar;

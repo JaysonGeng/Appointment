@@ -1,12 +1,14 @@
 
-//获取当前时间的类
+//鑾峰彇褰撳墠鏃堕棿鐨勭被
 
 package com.example.appointment.message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class MyTime {
 
 	public static String geTime() {

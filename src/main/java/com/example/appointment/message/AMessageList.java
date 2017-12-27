@@ -1,16 +1,18 @@
 
-//´æ´¢´«ÊäµÄĞÅÏ¢ÁĞ±íµÄÀà
+//å­˜å‚¨ä¼ è¾“çš„ä¿¡æ¯åˆ—è¡¨çš„ç±»
 
 package com.example.appointment.message;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class AMessageList {
 
 	public List<AMessage> messageList;
-	public String listname="";//ÁĞ±íÃû³Æ
+	public String listname="";//åˆ—è¡¨åç§°
 	
 	public AMessageList(String name)
 	{
@@ -18,7 +20,7 @@ public class AMessageList {
 		listname=name;
 	}
 	
-	//È¡ÁĞ±íµÄ¶¥²¿ÔªËØ
+	//å–åˆ—è¡¨çš„é¡¶éƒ¨å…ƒç´ 
 	public AMessage getTop()
 	{
 		int j=messageList.size();

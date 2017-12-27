@@ -1,9 +1,11 @@
 
-//存储用户信息的类
+//瀛樺偍鐢ㄦ埛淇℃伅鐨勭被
 
 package com.example.appointment.message;
 
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 
 public class ContactInfo {
 	public long number;

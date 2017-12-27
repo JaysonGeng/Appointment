@@ -26,6 +26,7 @@ import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ContactInfoList;
 import com.example.appointment.message.ThreadUtils;
+import com.example.appointment.page.Main;
 import com.example.appointment.page.MainActivity;
 import com.google.gson.Gson;
 
@@ -216,7 +217,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                                 transition.setVisibility(View.GONE);
                                 Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                intent.setClass(LoginActivity.this, Main.class);
                                 startActivity(intent);
                                 finish();
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

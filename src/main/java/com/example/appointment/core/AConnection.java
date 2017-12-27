@@ -1,5 +1,5 @@
 
-//¿Í»§¶ËµÄÁ´½ÓÀà£¬ÊÇÁ¬½Ó¹¦ÄÜµÄºËĞÄ
+//å®¢æˆ·ç«¯çš„é“¾æ¥ç±»ï¼Œæ˜¯è¿æ¥åŠŸèƒ½çš„æ ¸å¿ƒ
 
 package com.example.appointment.core;
 
@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-//¶ÔºËĞÄ´úÂë½øĞĞ³éÈ¡£¬Ò»¹²ÓĞËÄ¸ö¹«¹²µÄ·½·¨£¬·Ö±ğÊÇÁ¬½Ó£¬¶Ï¿ªÁ¬½Ó£¬·¢ËÍÏûÏ¢£¬½ÓÊÕÏûÏ¢
+//å¯¹æ ¸å¿ƒä»£ç è¿›è¡ŒæŠ½å–ï¼Œä¸€å…±æœ‰å››ä¸ªå…¬å…±çš„æ–¹æ³•ï¼Œåˆ†åˆ«æ˜¯è¿æ¥ï¼Œæ–­å¼€è¿æ¥ï¼Œå‘é€æ¶ˆæ¯ï¼Œæ¥æ”¶æ¶ˆæ¯
 public class AConnection 
 {
 
@@ -26,7 +26,7 @@ public class AConnection
 	private WaitThread waitThread;
 	public boolean isWaiting;
 
-	// new³öQQConnection¶ÔÏóµÄÊ±ºò³õÊ¼»¯IPµØÖ·ºÍ¶Ë¿Ú
+	// newå‡ºQQConnectionå¯¹è±¡çš„æ—¶å€™åˆå§‹åŒ–IPåœ°å€å’Œç«¯å£
 	public AConnection(String host, int port) {
 		super();
 		this.host = host;
@@ -34,57 +34,57 @@ public class AConnection
 	}
 
 
-	//´´½¨Óë·şÎñÆ÷Ö®¼äµÄÁ¬½Ó
+	//åˆ›å»ºä¸æœåŠ¡å™¨ä¹‹é—´çš„è¿æ¥
 	public void connect() throws UnknownHostException, IOException {
-		// ´´½¨Á¬½Ó
+		// åˆ›å»ºè¿æ¥
 		client = new Socket(host, port);
 		reader = new DataInputStream(client.getInputStream());
 		writer = new DataOutputStream(client.getOutputStream());
-		// ´´½¨Á¬½ÓµÄÊ±ºò¿ªÆôµÈ´ıÏß³Ì
+		// åˆ›å»ºè¿æ¥çš„æ—¶å€™å¼€å¯ç­‰å¾…çº¿ç¨‹
 		isWaiting = true;
 		waitThread = new WaitThread();
 		waitThread.start();
 
 	}
 
-	 //¶Ï¿ªÓë·şÎñÆÚ¼äµÄÁ¬½Ó
+	 //æ–­å¼€ä¸æœåŠ¡æœŸé—´çš„è¿æ¥
 	public void disConnect() throws IOException {
-		// ¹Ø±ÕÁ¬½Ó¾ÍÊÇÊÍ·Å×ÊÔ´
+		// å…³é—­è¿æ¥å°±æ˜¯é‡Šæ”¾èµ„æº
 		client.close();
 		reader.close();
 		writer.close();
 		isWaiting = false;
 	}
 
-	//·¢ËÍxmlÏûÏ¢
+	//å‘é€xmlæ¶ˆæ¯
 	public void sendMessage(String xml) throws IOException {
-		// ·¢ËÍÏûÏ¢ÒªÓÃµ½ÊäÈëÊä³öÁ÷£¬½²Á÷×÷ÎªÀàµÄ³ÉÔ±±äÁ¿£¬ÔÚ´´½¨Á¬½ÓµÄÊ±ºò³õÊ¼»¯£¬¶Ï¿ªÁ¬½ÓµÄÊ±ºòÊÍ·Å×ÊÔ´
-		// ·¢ËÍÏûÏ¢ÆäÊµ¾ÍÊÇ°ÑÏûÏ¢Ğ´³öÈ¥
+		// å‘é€æ¶ˆæ¯è¦ç”¨åˆ°è¾“å…¥è¾“å‡ºæµï¼Œè®²æµä½œä¸ºç±»çš„æˆå‘˜å˜é‡ï¼Œåœ¨åˆ›å»ºè¿æ¥çš„æ—¶å€™åˆå§‹åŒ–ï¼Œæ–­å¼€è¿æ¥çš„æ—¶å€™é‡Šæ”¾èµ„æº
+		// å‘é€æ¶ˆæ¯å…¶å®å°±æ˜¯æŠŠæ¶ˆæ¯å†™å‡ºå»
 		writer.writeUTF(xml);
 
 	}
 
-	//·¢ËÍjava¶ÔÏóÏûÏ¢
+	//å‘é€javaå¯¹è±¡æ¶ˆæ¯
 	public void sendMessage(AMessage msg) throws IOException {
 		writer.writeUTF(msg.toXml());
 	}
 
-	//µÈ´ıÏß³Ì ½ÓÊÕÏûÏ¢,ÓÉÓÚ²»ÖªµÀÏûÏ¢Ê²Ã´Ê±ºòµ½´ï£¬ĞèÒªÒ»Ö±µÈ´ı×Å£¬µÈ´ıÏûÏ¢µÄµ½´ï
+	//ç­‰å¾…çº¿ç¨‹ æ¥æ”¶æ¶ˆæ¯,ç”±äºä¸çŸ¥é“æ¶ˆæ¯ä»€ä¹ˆæ—¶å€™åˆ°è¾¾ï¼Œéœ€è¦ä¸€ç›´ç­‰å¾…ç€ï¼Œç­‰å¾…æ¶ˆæ¯çš„åˆ°è¾¾
 	private class WaitThread extends Thread {
 
 		@Override
 		public void run() {
 			super.run();
 			while (isWaiting) {
-				// ½ÓÊÕÏûÏ¢ÆäÊµ¾ÍÊÇ½«ÏûÏ¢¶ÁÈ¡µ½
+				// æ¥æ”¶æ¶ˆæ¯å…¶å®å°±æ˜¯å°†æ¶ˆæ¯è¯»å–åˆ°
 				try {
-					String xml = reader.readUTF();// »ñÈ¡ÏûÏ¢
-					// ½«ÏûÏ¢×ª³ÉJava¶ÔÏó
+					String xml = reader.readUTF();// è·å–æ¶ˆæ¯
+					// å°†æ¶ˆæ¯è½¬æˆJavaå¯¹è±¡
 					AMessage msg = new AMessage();
 					msg = (AMessage) msg.fromXml(xml);
-					// ÕâÀï½ÓÊÕµ½ÏûÏ¢£¬¸ù¾İÏûÏ¢ÖĞ±£´æµÄtype×Ö¶ÎÀ´´¦ÀíµÇÂ¼£¬»ñÈ¡ÁªÏµÈËÁĞ±í£¬µÇ³öµÈ²Ù×÷£¬½«ÕâÒ»²¿·Ö²Ù×÷³éÈ¡³öÀ´Ò»¸ö½Ó¿Ú£¬ÀàËÆÓÚ°´Å¥µÄµã»÷ÊÂ¼şÄÇÑù£¬½ÓÊÕµ½ÏûÏ¢¾Í×ö²Ù×÷
+					// è¿™é‡Œæ¥æ”¶åˆ°æ¶ˆæ¯ï¼Œæ ¹æ®æ¶ˆæ¯ä¸­ä¿å­˜çš„typeå­—æ®µæ¥å¤„ç†ç™»å½•ï¼Œè·å–è”ç³»äººåˆ—è¡¨ï¼Œç™»å‡ºç­‰æ“ä½œï¼Œå°†è¿™ä¸€éƒ¨åˆ†æ“ä½œæŠ½å–å‡ºæ¥ä¸€ä¸ªæ¥å£ï¼Œç±»ä¼¼äºæŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶é‚£æ ·ï¼Œæ¥æ”¶åˆ°æ¶ˆæ¯å°±åšæ“ä½œ
 					/*
-					 * ½ÓÊÕµ½ÏûÏ¢Ö®ºó£¬ÒÀ´Îµ÷ÓÃÃ¿¸ö¼àÌıÆ÷µÄonReceive·½·¨
+					 * æ¥æ”¶åˆ°æ¶ˆæ¯ä¹‹åï¼Œä¾æ¬¡è°ƒç”¨æ¯ä¸ªç›‘å¬å™¨çš„onReceiveæ–¹æ³•
 					 */
 					for (OnMessageListener listener : listeners) {
 						listener.onReveive(msg);
@@ -99,8 +99,8 @@ public class AConnection
 		}
 	}
 
-	// ·şÎñÆ÷»á¾­³£¸ø¿Í»§¶Ë·¢ËÍÏûÏ¢£¬¿Í»§¶Ë»áÓĞ²»Í¬µÄÏûÏ¢µ½À´£¬ËùÒÔĞÂ½¨Ò»¸ö¼àÌıÆ÷µÄ¼¯ºÏ£¬Íù¼¯ºÏÖĞÌí¼ÓÒ»¸ö¼àÌıÆ÷¾Íµ÷ÓÃÒ»´ÎonReveive·½·¨£¬
-	//¼¯ºÏÖĞÓĞ¾Íµ÷ÓÃ£¬¼¯ºÏÖĞÃ»ÓĞ¾Í²»µ÷ÓÃ
+	// æœåŠ¡å™¨ä¼šç»å¸¸ç»™å®¢æˆ·ç«¯å‘é€æ¶ˆæ¯ï¼Œå®¢æˆ·ç«¯ä¼šæœ‰ä¸åŒçš„æ¶ˆæ¯åˆ°æ¥ï¼Œæ‰€ä»¥æ–°å»ºä¸€ä¸ªç›‘å¬å™¨çš„é›†åˆï¼Œå¾€é›†åˆä¸­æ·»åŠ ä¸€ä¸ªç›‘å¬å™¨å°±è°ƒç”¨ä¸€æ¬¡onReveiveæ–¹æ³•ï¼Œ
+	//é›†åˆä¸­æœ‰å°±è°ƒç”¨ï¼Œé›†åˆä¸­æ²¡æœ‰å°±ä¸è°ƒç”¨
 	private List<OnMessageListener> listeners = new ArrayList<OnMessageListener>();
 
 	public void addOnMessageListener(OnMessageListener listener) {
@@ -111,7 +111,7 @@ public class AConnection
 		listeners.remove(listener);
 	}
 
-	//ÏûÏ¢µÄ¼àÌıÆ÷½Ó¿Ú£¬µ±ÓĞÏûÏ¢µ½À´µÄÊ±ºò¾Íµ÷ÓÃÒ»´ÎonReceive·½·¨
+	//æ¶ˆæ¯çš„ç›‘å¬å™¨æ¥å£ï¼Œå½“æœ‰æ¶ˆæ¯åˆ°æ¥çš„æ—¶å€™å°±è°ƒç”¨ä¸€æ¬¡onReceiveæ–¹æ³•
 	public static interface OnMessageListener {
 		public void onReveive(AMessage msg);
 	}

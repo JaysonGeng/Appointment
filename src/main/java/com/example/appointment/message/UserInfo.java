@@ -1,11 +1,13 @@
 
-//可以放在好友列表的用户类
+//鍙互鏀惧湪濂藉弸鍒楄〃鐨勭敤鎴风被
 
 package com.example.appointment.message;
 
 
 import com.example.appointment.R;
-
+/**
+ * Created by MichaelOD on 2017/12/23.
+ */
 public class UserInfo
 {
     public String name=null;
@@ -14,7 +16,7 @@ public class UserInfo
     public long number=0;
     public String groupInfo=null;
     public String online=null;
-    //构造方法把ContactInfo生成一个UserInfo
+    //鏋勯�犳柟娉曟妸ContactInfo鐢熸垚涓�涓猆serInfo
     public UserInfo(ContactInfo a,String inf) {
         super();
         this.name = a.name;

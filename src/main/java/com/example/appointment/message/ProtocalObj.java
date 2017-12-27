@@ -1,9 +1,11 @@
 
-//ÓÃÓÚ°ÑjavaÀà×ª»»ÎªxmlÎÄ¼şºÍjson´®£¬¸÷¸öĞÅÏ¢´æ´¢ÀàµÄ¸¸Àà£¬ÊÇ³ÌĞòĞÅÏ¢´«ÊäµÄºËĞÄ
+//ç”¨äºæŠŠjavaç±»è½¬æ¢ä¸ºxmlæ–‡ä»¶å’Œjsonä¸²ï¼Œå„ä¸ªä¿¡æ¯å­˜å‚¨ç±»çš„çˆ¶ç±»ï¼Œæ˜¯ç¨‹åºä¿¡æ¯ä¼ è¾“çš„æ ¸å¿ƒ
 
 
 package com.example.appointment.message;
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
@@ -12,7 +14,7 @@ public class ProtocalObj {
 	public String toXml() {
 		XStream x = new XStream();
 		x.alias(this.getClass().getSimpleName(), this.getClass());
-		return x.toXML(this);// ½«±¾Àà×ª»»³Éxml·µ»Ø
+		return x.toXML(this);// å°†æœ¬ç±»è½¬æ¢æˆxmlè¿”å›
 	}
 	public Object fromXml(String xml) {
 		XStream x = new XStream();

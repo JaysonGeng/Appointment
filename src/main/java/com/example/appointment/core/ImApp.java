@@ -1,5 +1,5 @@
 
-//³ÌĞòµÄµÄ³¤Á¬½Ó£¬Õû¸ö¿Í»§¶ËµÄºËĞÄ×é¼ş
+//ç¨‹åºçš„çš„é•¿è¿æ¥ï¼Œæ•´ä¸ªå®¢æˆ·ç«¯çš„æ ¸å¿ƒç»„ä»¶
 
 package com.example.appointment.core;
 
@@ -19,17 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImApp extends Application {
-	private AConnection myConn;// ³¤Á¬½Ó
-	private long myNumber;// ÓÃ»§µÄµÇÂ¼ÕËºÅ
-	private String buddyListJson;// ºÃÓÑÁĞ±íµÄjson´®
-	private String groupListJson;// Èº×éÁĞ±íµÄjson´®
-	private String planListJson;// »î¶¯ÁĞ±íµÄjson´®
+	private AConnection myConn;// é•¿è¿æ¥
+	private long myNumber;// ç”¨æˆ·çš„ç™»å½•è´¦å·
+	private String buddyListJson;// å¥½å‹åˆ—è¡¨çš„jsonä¸²
+	private String groupListJson;// ç¾¤ç»„åˆ—è¡¨çš„jsonä¸²
+	private String planListJson;// æ´»åŠ¨åˆ—è¡¨çš„jsonä¸²
 	private String myname;
 	private String mypassword;
 	private List<AMessageList> list = new ArrayList<AMessageList>();
 	private boolean online=true;
 
-	//³¤Á¬½Ó·½·¨
+	//é•¿è¿æ¥æ–¹æ³•
 	public AConnection getMyConn() {
 		return myConn;
 	}
@@ -38,7 +38,7 @@ public class ImApp extends Application {
 		this.myConn = myConn;
 	}
 
-	//ÕÊºÅ·½·¨
+	//å¸å·æ–¹æ³•
 	public long getMyNumber() {
 		return myNumber;
 	}
@@ -47,7 +47,7 @@ public class ImApp extends Application {
 		this.myNumber = myNumber;
 	}
 		
-	//ÃÜÂë·½·¨
+	//å¯†ç æ–¹æ³•
 	public String getMyPassword() {
 		return mypassword;
 	}
@@ -56,7 +56,7 @@ public class ImApp extends Application {
 		this.mypassword = Password;
 	}
 	
-	//»ñÈ¡×Ô¼ºµÄÁ¬½Ó×´Ì¬
+	//è·å–è‡ªå·±çš„è¿æ¥çŠ¶æ€
 	public boolean getstate() {
 		return online;
 	}
@@ -65,7 +65,7 @@ public class ImApp extends Application {
 		this.online = h;
 	}
 
-	//»ñÈ¡êÇ³Æ
+	//è·å–æ˜µç§°
 	public String getMyName() {
 		return myname;
 	}
@@ -74,7 +74,7 @@ public class ImApp extends Application {
 		this.myname = myName;
 	}
 	
-	//»ñÈ¡ºÃÓÑÁĞ±í
+	//è·å–å¥½å‹åˆ—è¡¨
 	public String getBuddyListJson() {
 		return buddyListJson;
 	}
@@ -83,7 +83,7 @@ public class ImApp extends Application {
 		this.buddyListJson = buddyListJson;
 	}
 	
-	//»ñÈ¡Èº×éÁĞ±í
+	//è·å–ç¾¤ç»„åˆ—è¡¨
 	public String getGroupListJson() {
 		return groupListJson;
 	}
@@ -92,7 +92,7 @@ public class ImApp extends Application {
 		this.groupListJson = groupListJson;
 	}
 	
-	//»ñÈ¡»î¶¯ÁĞ±í
+	//è·å–æ´»åŠ¨åˆ—è¡¨
 	public String getPlanListJson() {
 		return planListJson;
 	}
@@ -101,7 +101,7 @@ public class ImApp extends Application {
 		this.planListJson = planListJson;
 	}
 
-	//Ìí¼ÓÏûÏ¢µ½ÏûÏ¢ÁĞ±í
+	//æ·»åŠ æ¶ˆæ¯åˆ°æ¶ˆæ¯åˆ—è¡¨
 	public void addMessage(AMessage message) {
 		if(message.type.equals(AMessageType.MSG_TYPE_CHAT_P2P)){
 		boolean check=false;
@@ -127,9 +127,9 @@ public class ImApp extends Application {
 		
 		for(AMessageList a:list)
 		{
-			//²éÕÒÏûÏ¢ÁĞ±í£¬Èç¹û´æÔÚÕâÑùµÄÁĞ±íÃû¾Í¼Óµ½¸Ã±íÖĞ
-			//Ã»ÓĞ¾ÍĞÂ½¨Ò»¸öÁĞ±í£¬ÒÔ´ËÊµÏÖQQµÄÏûÏ¢ÁĞ±í¹¦ÄÜ£¬Í¬ÀàÏûÏ¢´æ´¢ÔÚÒ»Æğ
-			//Èº×éºÍºÃÓÑÏûÏ¢Í¬Àí
+			//æŸ¥æ‰¾æ¶ˆæ¯åˆ—è¡¨ï¼Œå¦‚æœå­˜åœ¨è¿™æ ·çš„åˆ—è¡¨åå°±åŠ åˆ°è¯¥è¡¨ä¸­
+			//æ²¡æœ‰å°±æ–°å»ºä¸€ä¸ªåˆ—è¡¨ï¼Œä»¥æ­¤å®ç°QQçš„æ¶ˆæ¯åˆ—è¡¨åŠŸèƒ½ï¼ŒåŒç±»æ¶ˆæ¯å­˜å‚¨åœ¨ä¸€èµ·
+			//ç¾¤ç»„å’Œå¥½å‹æ¶ˆæ¯åŒç†
 			if(a.listname.equals(name))
 			{
 				check=true;
@@ -191,7 +191,7 @@ public class ImApp extends Application {
 		}}
 	}
 
-	//ÇåÀíµôÒ»¸öÁĞ±í
+	//æ¸…ç†æ‰ä¸€ä¸ªåˆ—è¡¨
 	public void clearMessage(String listname)
 	{
 		for(AMessageList a:list)
@@ -204,7 +204,7 @@ public class ImApp extends Application {
 		}
 	}
 	
-	//»ñÈ¡ÏûÏ¢ÁĞ±í
+	//è·å–æ¶ˆæ¯åˆ—è¡¨
 	public AMessageList getList(String name)
 	{
 		for(AMessageList r:list)
@@ -217,12 +217,12 @@ public class ImApp extends Application {
 		return null;
 	}
 	
-	//»ñÈ¡Õû¸öÁĞ±í¼¯
+	//è·å–æ•´ä¸ªåˆ—è¡¨é›†
 	public List<AMessageList> getList() {
 		return list;
 	}
 	
-	//Çå¿ÕÕû¸öÁĞ±í¼¯
+	//æ¸…ç©ºæ•´ä¸ªåˆ—è¡¨é›†
 	public void clearList() {
 		list.clear();
 	}

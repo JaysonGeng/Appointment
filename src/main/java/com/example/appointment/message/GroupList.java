@@ -1,5 +1,5 @@
 
-//群组列表，存储各个群组的Group
+//缇ょ粍鍒楄〃锛屽瓨鍌ㄥ悇涓兢缁勭殑Group
 
 package com.example.appointment.message;
 
@@ -7,11 +7,13 @@ package com.example.appointment.message;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class GroupList {
 	public List<GroupInfo> groupList = new ArrayList<GroupInfo>();
 	
-	//根据帐号查找用户
+	//鏍规嵁甯愬彿鏌ユ壘鐢ㄦ埛
 	public GroupInfo get(long num)
 	{
 		for(GroupInfo a:groupList)

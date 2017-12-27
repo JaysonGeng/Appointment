@@ -1,16 +1,18 @@
 
-//存储用户的类集合
+//瀛樺偍鐢ㄦ埛鐨勭被闆嗗悎
 
 package com.example.appointment.message;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by MichaelOD on 2017/12/22.
+ */
 public class ContactInfoList {
 	public List<ContactInfo> buddyList = new ArrayList<ContactInfo>();
 
-	//根据帐号查找用户
+	//鏍规嵁甯愬彿鏌ユ壘鐢ㄦ埛
 	public ContactInfo get(long num)
 	{
 		for(ContactInfo a:buddyList)

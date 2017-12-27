@@ -1,21 +1,23 @@
 
-//Ïß³ÌÇĞ»»¹¤¾ß£¬ÓÃÓÚÇĞ»»UIÏß³ÌºÍÍøÂçÏß³Ì
+//çº¿ç¨‹åˆ‡æ¢å·¥å…·ï¼Œç”¨äºåˆ‡æ¢UIçº¿ç¨‹å’Œç½‘ç»œçº¿ç¨‹
 
 package com.example.appointment.message;
 
 
 import android.os.Handler;
-
+/**
+ * Created by MichaelOD on 2017/12/23.
+ */
 public class ThreadUtils {
 
-	//ÍøÂçÏß³Ì
+	//ç½‘ç»œçº¿ç¨‹
 	public static void runInSubThread(Runnable r) {
 		new Thread(r).start();
 	}
 
 	private static Handler handler = new Handler();
 
-	//UIÏß³Ì
+	//UIçº¿ç¨‹
 	public static void runInUiThread(Runnable r) {
 		handler.post(r);
 	}
