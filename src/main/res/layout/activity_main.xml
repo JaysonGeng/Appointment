@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout_Main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/transition"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/transition_relative_layout_Main"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_Main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbarbackground"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <FrameLayout
+            android:id="@+id/show_frame_layout_Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_Main"
+            android:layout_above="@+id/buttonbar_fragment_Main">
+
+            <FrameLayout
+                android:id="@+id/stage2_frame_layout_Main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/friend_list_recycler_view_Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/stage3_frame_layout_Main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/stage1_linear_layout_Main"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/switch_relative_layout_Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp">
+
+                    <TextView
+                        android:id="@+id/all_activities_text_view_Main"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:text="推 送 活 动"
+                        android:textSize="20dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="#ff0000ff"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/my_activities_text_view_Main"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:text="我的活动"
+                        android:textSize="20dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="#000000"
+                        android:gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"/>
+
+                    <ImageView
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:background="@color/colorPrimary"
+                        android:layout_centerHorizontal="true"/>
+
+                    <ImageView
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        android:layout_alignBottom="@id/all_activities_text_view_Main"/>
+
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <WebView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <fragment
+            android:id="@+id/buttonbar_fragment_Main"
+            android:name="com.example.appointment.View.ButtonBarFragment"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_alignParentBottom="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/commit_floating_button_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:src="@drawable/commitactivityicon"
+            android:layout_alignRight="@id/show_frame_layout_Main"
+            android:layout_alignBottom="@+id/show_frame_layout_Main"
+            android:layout_margin="15dp"/>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view_Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:padding="10dp"
+            android:background="@drawable/navbackground">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/icon_image_view_Main"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/username_text_view_Main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

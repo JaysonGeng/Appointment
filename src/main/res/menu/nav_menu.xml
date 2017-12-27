@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_information"
+        android:icon="@drawable/imformationicon"
+        android:title="个人信息"/>
+
+    <item
+        android:id="@+id/nav_feedback"
+        android:icon="@drawable/feedbackicon"
+        android:title="意见反馈"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/settingicon"
+        android:title="设置"/>
+
+    <item
+        android:id="@+id/nav_administrator"
+        android:icon="@drawable/administratoricon"
+        android:title="管理员"/>
+
+</menu>
