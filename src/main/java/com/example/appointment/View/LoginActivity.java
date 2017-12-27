@@ -195,6 +195,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+
     private AConnection.OnMessageListener listener = new AConnection.OnMessageListener() {
 
         public void onReveive(final AMessage msg) {
