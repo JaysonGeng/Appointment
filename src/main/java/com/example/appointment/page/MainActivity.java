@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView(){
 
 
+
         toolbar = findViewById(R.id.toolbar_Main);
         username_show = findViewById(R.id.username_text_view_Main);
         mDrawerLayout = findViewById(R.id.drawer_layout_Main);
