@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/xx_logo2"
     android:orientation="vertical"
-    tools:context=".View.LoginActivity" >
+    tools:context=".View.LoginActivity">
 
     <!-- 标题 -->
 
@@ -37,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/input"
@@ -53,40 +53,46 @@
             android:text="发送"
             android:textSize="18sp" />
     </LinearLayout>
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="#fafafa"
-    android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/emoji1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/e01"/>
-    <ImageView
-        android:id="@+id/emoji2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/e02"/>
-    <ImageView
-        android:id="@+id/emoji3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/e03"/>
-    <ImageView
-        android:id="@+id/emoji4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/e04"/>
-    <ImageView
-        android:id="@+id/emoji5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/e05"/>
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fafafa"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/emoji1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/e01" />
+
+        <ImageView
+            android:id="@+id/emoji2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/e02" />
+
+        <ImageView
+            android:id="@+id/emoji3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/e03" />
+
+        <ImageView
+            android:id="@+id/emoji4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/e04" />
+
+        <ImageView
+            android:id="@+id/emoji5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/e05" />
+    </LinearLayout>
 </LinearLayout>

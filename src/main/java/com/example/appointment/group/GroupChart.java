@@ -390,7 +390,7 @@ emoji5.setOnClickListener(new OnClickListener() {
 		toNick = intent.getStringExtra("nick");
 		toAccount = intent.getLongExtra("account", 0);
 		
-		input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
 		//文本显示的位置在EditText的最上方  
 		input.setGravity(Gravity.TOP);
 		//改变默认的单行模式  

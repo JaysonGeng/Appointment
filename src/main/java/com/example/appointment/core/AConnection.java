@@ -3,12 +3,7 @@
 
 package com.example.appointment.core;
 
-
-import android.widget.Toast;
-
-import com.example.appointment.View.LoginActivity;
 import com.example.appointment.message.AMessage;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -47,6 +42,7 @@ public class AConnection
 		isWaiting = true;
 		waitThread = new WaitThread();
 		waitThread.start();
+
 	}
 
 	//断开与服务期间的连接

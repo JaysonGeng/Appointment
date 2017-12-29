@@ -44,7 +44,6 @@ public class TabOne extends Fragment {
     public TabOne(Context context) {
         super();
         t = context;
-
     }
 
     //listView的使用分三步，获得listView容器，封装集合数据，写数据适配器加载listView条目的布局
@@ -78,11 +77,14 @@ public class TabOne extends Fragment {
 
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
                 // 获得当前点击条目的信息.包含账号和昵称
+
                 info = infos.get(position);
                 // 不能跟自己聊天
 
                 // 将账号和个性签名带到下一个activity
+
                 String name = "";
                 long num = 0;
                 if (info.type.equals(AMessageType.MSG_TYPE_CHAT_P2P)) {
@@ -114,7 +116,6 @@ public class TabOne extends Fragment {
                         if (a.number == info.to)
                             name = a.name;
                     }
-
                     Intent intent = new Intent(t,
                             GroupChart.class);
                     intent.putExtra("account", num);
@@ -194,4 +195,3 @@ public class TabOne extends Fragment {
 
     }
 }
- 

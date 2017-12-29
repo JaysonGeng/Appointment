@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 try {
                     //这里的IP地址一定要注意改成电脑的地址
-                    conn = new AConnection("192.168.43.153", 8088);// Socket
+                    conn = new AConnection("202.194.15.234", 8088);// Socket
                     conn.connect();// 建立连接
                     // 建立连接之后，将监听器添加到连接里面
                     conn.addOnMessageListener(listener);
@@ -214,26 +214,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (AMessageType.MSG_TYPE_BUDDYLIST.equals(msg.type)) {
                         // 登录成功，返回的数据是好友列表
                         // 有用的信息是content的json串
-                        LoginActivity.instance.finish();
+                        Toast.makeText(getBaseContext(), "登录成功 ！", Toast.LENGTH_SHORT).show();
 
-                        //星空效果动画
-                        animationSet = new AnimationSet(true);
-                        alphaAnimation = new AlphaAnimation(1, 0);
-                        alphaAnimation.setDuration(1600);
-                        animationSet.addAnimation(alphaAnimation);
-                        transition.startAnimation(animationSet);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                                transition.setVisibility(View.GONE);
-                                Intent intent = new Intent();
-                                intent.setClass(getBaseContext(), Main.class);
-                                startActivity(intent);
-                                app.setstate(true);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            }
-                        }, 1000);
+                        LoginActivity.instance.finish();
                         // 将连接conn保存到application中，作为一个长连接存在，这样在其他的activity，server中都能拿到这个连接，保证了项目连接的唯一性
                         // 新建一个application类，给出get，set方法，使用application可以在整个项目中共享数据
                         app = (ImApp) getApplication();
@@ -249,8 +232,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         app.setMyName(msg.fromName);
                         app.setMyPassword(password);
-
-
+                        // 打开主页
+                        Intent intent = new Intent();
+                        intent.setClass(getBaseContext(), Main.class);
+                        startActivity(intent);
+                        app.setstate(true);
 
                     } else if (AMessageType.MSG_TYPE_GROUPLIST.equals(msg.type)) {
                         app.setGroupListJson(msg.content);

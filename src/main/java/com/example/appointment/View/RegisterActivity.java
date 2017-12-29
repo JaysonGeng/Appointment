@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void run() {
                 try {
                     //这里的IP地址一定要注意改成电脑的地址
-                    conn = new AConnection("192.168.43.153", 8088);// Socket
+                    conn = new AConnection("202.194.15.234", 8088);// Socket
                     conn.connect();// 建立连接
                     // 建立连接之后，将监听器添加到连接里面
                     conn.addOnMessageListener(listener);
@@ -212,11 +212,8 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-
     private boolean isinputvalid(){
-        boolean a = Pattern.matches("^20[0-9]{10}$",student_id.getText().toString());
+        boolean a = Pattern.matches("^[0-9]{5,20}$",student_id.getText().toString());
         boolean b = Pattern.matches("^[\u4e00-\u9fa5]{2,}$",name.getText().toString());
         boolean c = !pref.getString("campus","").equals("");
         boolean d = !pref.getString("sex","").equals("");

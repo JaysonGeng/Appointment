@@ -394,7 +394,7 @@ public class ChartActivity extends Activity {
         toNick = intent.getStringExtra("nick");
         toAccount = Long.parseLong(intent.getStringExtra("account"));
 
-        input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
         //文本显示的位置在EditText的最上方
         input.setGravity(Gravity.TOP);
         //改变默认的单行模式
