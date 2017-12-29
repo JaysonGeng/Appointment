@@ -9,7 +9,8 @@
         android:id="@+id/ct_photo"
         android:layout_width="70dip"
         android:layout_height="70dip"
-        android:layout_margin="5dip" />
+        android:layout_margin="5dip"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/ct_name"

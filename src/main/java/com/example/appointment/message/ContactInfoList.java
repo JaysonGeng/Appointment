@@ -1,12 +1,11 @@
 
-//存储用户的类集合
-
 package com.example.appointment.message;
 
 
 import java.util.ArrayList;
 import java.util.List;
-/**
+
+/**存储用户的类集合
  * Created by MichaelOD on 2017/12/22.
  */
 public class ContactInfoList {

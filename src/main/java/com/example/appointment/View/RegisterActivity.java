@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void run() {
                 try {
                     //这里的IP地址一定要注意改成电脑的地址
-                    conn = new AConnection("192.168.43.153", 8080);// Socket
+                    conn = new AConnection("192.168.43.153", 8088);// Socket
                     conn.connect();// 建立连接
                     // 建立连接之后，将监听器添加到连接里面
                     conn.addOnMessageListener(listener);

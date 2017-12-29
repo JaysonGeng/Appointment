@@ -46,7 +46,7 @@ public class ImApp extends Application {
 	public void setMyNumber(long myNumber) {
 		this.myNumber = myNumber;
 	}
-		
+
 	//密码方法
 	public String getMyPassword() {
 		return mypassword;
@@ -55,7 +55,7 @@ public class ImApp extends Application {
 	public void setMyPassword(String Password) {
 		this.mypassword = Password;
 	}
-	
+
 	//获取自己的连接状态
 	public boolean getstate() {
 		return online;
@@ -73,7 +73,7 @@ public class ImApp extends Application {
 	public void setMyName(String myName) {
 		this.myname = myName;
 	}
-	
+
 	//获取好友列表
 	public String getBuddyListJson() {
 		return buddyListJson;
@@ -82,7 +82,7 @@ public class ImApp extends Application {
 	public void setBuddyListJson(String buddyListJson) {
 		this.buddyListJson = buddyListJson;
 	}
-	
+
 	//获取群组列表
 	public String getGroupListJson() {
 		return groupListJson;
@@ -91,7 +91,7 @@ public class ImApp extends Application {
 	public void setGroupListJson(String groupListJson) {
 		this.groupListJson = groupListJson;
 	}
-	
+
 	//获取活动列表
 	public String getPlanListJson() {
 		return planListJson;
@@ -104,45 +104,45 @@ public class ImApp extends Application {
 	//添加消息到消息列表
 	public void addMessage(AMessage message) {
 		if(message.type.equals(AMessageType.MSG_TYPE_CHAT_P2P)){
-		boolean check=false;
-		long num;
-		
-		String name="";
-		String newBuddyListJson = this.getBuddyListJson();
-		Gson gson = new Gson();
-		ContactInfoList newList = gson.fromJson(
-				newBuddyListJson, ContactInfoList.class);
-		if(message.to==myNumber)
-			num=message.from;
-		else
-			num=message.to;
-		for(ContactInfo a:newList.buddyList)
-		{
-			if(a.number==num)
+			boolean check=false;
+			long num;
+
+			String name="";
+			String newBuddyListJson = this.getBuddyListJson();
+			Gson gson = new Gson();
+			ContactInfoList newList = gson.fromJson(
+					newBuddyListJson, ContactInfoList.class);
+			if(message.to==myNumber)
+				num=message.from;
+			else
+				num=message.to;
+			for(ContactInfo a:newList.buddyList)
 			{
-				name=a.name;
-				break;
+				if(a.number==num)
+				{
+					name=a.name;
+					break;
+				}
 			}
-		}
-		
-		for(AMessageList a:list)
-		{
-			//查找消息列表，如果存在这样的列表名就加到该表中
-			//没有就新建一个列表，以此实现QQ的消息列表功能，同类消息存储在一起
-			//群组和好友消息同理
-			if(a.listname.equals(name))
+
+			for(AMessageList a:list)
 			{
-				check=true;
-				a.messageList.add(message);
-				break;
+				//查找消息列表，如果存在这样的列表名就加到该表中
+				//没有就新建一个列表，以此实现QQ的消息列表功能，同类消息存储在一起
+				//群组和好友消息同理
+				if(a.listname.equals(name))
+				{
+					check=true;
+					a.messageList.add(message);
+					break;
+				}
 			}
-		}
-		if(!check)
-		{
-			AMessageList re=new AMessageList(name);
-			re.messageList.add(message);
-			list.add(re);
-		}}
+			if(!check)
+			{
+				AMessageList re=new AMessageList(name);
+				re.messageList.add(message);
+				list.add(re);
+			}}
 		else if(message.type.equals(AMessageType.MSG_TYPE_CHAT_ROOM)){
 			boolean check=false;
 			String name="";
@@ -174,21 +174,21 @@ public class ImApp extends Application {
 				list.add(re);
 			}}
 		else if(message.type.equals(AMessageType.MSG_TYPE_ADDFRIEND)){
-		boolean check=false;
-		for(AMessageList a:list)
-		{
-			if(a.listname.equals(message.fromName))
+			boolean check=false;
+			for(AMessageList a:list)
 			{
-				check=true;
-				break;
+				if(a.listname.equals(message.fromName))
+				{
+					check=true;
+					break;
+				}
 			}
-		}
-		if(!check)
-		{
-			AMessageList re=new AMessageList(message.fromName);
-			re.messageList.add(message);
-			list.add(re);
-		}}
+			if(!check)
+			{
+				AMessageList re=new AMessageList(message.fromName);
+				re.messageList.add(message);
+				list.add(re);
+			}}
 	}
 
 	//清理掉一个列表
@@ -203,7 +203,7 @@ public class ImApp extends Application {
 			}
 		}
 	}
-	
+
 	//获取消息列表
 	public AMessageList getList(String name)
 	{
@@ -216,12 +216,12 @@ public class ImApp extends Application {
 		}
 		return null;
 	}
-	
+
 	//获取整个列表集
 	public List<AMessageList> getList() {
 		return list;
 	}
-	
+
 	//清空整个列表集
 	public void clearList() {
 		list.clear();

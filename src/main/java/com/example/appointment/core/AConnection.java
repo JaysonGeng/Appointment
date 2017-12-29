@@ -4,6 +4,9 @@
 package com.example.appointment.core;
 
 
+import android.widget.Toast;
+
+import com.example.appointment.View.LoginActivity;
 import com.example.appointment.message.AMessage;
 
 import java.io.DataInputStream;
@@ -15,11 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 //对核心代码进行抽取，一共有四个公共的方法，分别是连接，断开连接，发送消息，接收消息
-public class AConnection 
+public class AConnection
 {
 
 	private String host = "";
-	private int port = 8080;
+	private int port = 8088;
 	Socket client;
 	private DataInputStream reader;
 	private DataOutputStream writer;
@@ -44,10 +47,9 @@ public class AConnection
 		isWaiting = true;
 		waitThread = new WaitThread();
 		waitThread.start();
-
 	}
 
-	 //断开与服务期间的连接
+	//断开与服务期间的连接
 	public void disConnect() throws IOException {
 		// 关闭连接就是释放资源
 		client.close();
@@ -115,5 +117,4 @@ public class AConnection
 	public static interface OnMessageListener {
 		public void onReveive(AMessage msg);
 	}
-
 }

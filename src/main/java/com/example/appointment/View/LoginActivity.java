@@ -1,5 +1,6 @@
 package com.example.appointment.View;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -27,6 +28,7 @@ import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ContactInfoList;
 import com.example.appointment.message.ThreadUtils;
 import com.example.appointment.page.Main;
+import com.example.appointment.page.Main2;
 import com.example.appointment.page.MainActivity;
 import com.google.gson.Gson;
 
@@ -48,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username;
     private String password;
     AConnection conn;
+    public static Activity instance;
+    public static Activity t;
     ImApp app;
 
     @Override
@@ -56,11 +60,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         initView();
         initEvent();
+
         ThreadUtils.runInSubThread(new Runnable() {
             public void run() {
                 try {
                     //这里的IP地址一定要注意改成电脑的地址
-                    conn = new AConnection("192.168.43.153", 8080);// Socket
+                    conn = new AConnection("192.168.43.153", 8088);// Socket
                     conn.connect();// 建立连接
                     // 建立连接之后，将监听器添加到连接里面
                     conn.addOnMessageListener(listener);
@@ -110,11 +115,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         boolean isRemember = pref.getBoolean("remember_password", false);
         boolean isAutoLogin = pref.getBoolean("auto_login", false);
         if (isAutoLogin) {
-            Intent intent = new Intent();
-            intent.setClass(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            Intent intent = new Intent();
+//            intent.setClass(LoginActivity.this, Main.class);
+//            startActivity(intent);
+//            finish();
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
         if (isRemember) {
             String username = pref.getString("username", "");
@@ -127,6 +132,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.setOnClickListener(this);
         register.setOnClickListener(this);
         forget_password.setOnClickListener(this);
+        app=(ImApp)getApplication();
+        instance=this;
     }
 
     @Override
@@ -175,12 +182,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else editor.putBoolean("auto_login", false);
                 editor.putString("account", username);
                 editor.apply();
-
                 break;
+
             case R.id.register_text_view_Login:
                 intent.setClass(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
+
             case R.id.forget_password_text_view_Login:
                 intent.setClass(LoginActivity.this, FindPasswordActivity.class);
                 startActivity(intent);
@@ -206,6 +214,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (AMessageType.MSG_TYPE_BUDDYLIST.equals(msg.type)) {
                         // 登录成功，返回的数据是好友列表
                         // 有用的信息是content的json串
+                        LoginActivity.instance.finish();
+
                         //星空效果动画
                         animationSet = new AnimationSet(true);
                         alphaAnimation = new AlphaAnimation(1, 0);
@@ -218,9 +228,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                                 transition.setVisibility(View.GONE);
                                 Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, Main.class);
+                                intent.setClass(getBaseContext(), Main.class);
                                 startActivity(intent);
-                                finish();
+                                app.setstate(true);
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         }, 1000);
@@ -239,8 +249,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         app.setMyName(msg.fromName);
                         app.setMyPassword(password);
-                        // 打开主页
-                        app.setstate(true);
+
+
 
                     } else if (AMessageType.MSG_TYPE_GROUPLIST.equals(msg.type)) {
                         app.setGroupListJson(msg.content);

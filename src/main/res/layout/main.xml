@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout_Main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/transition"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/xx_logo2">
 
+    <!--   主界面 -->
     <LinearLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="top"
-            android:background="@drawable/toolbarbackground">
+            android:background="#026464">
 
             <ImageView
                 android:id="@+id/leftmenu"
@@ -52,9 +52,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@drawable/toolbarbackground"
+            android:background="#026464"
             android:baselineAligned="false"
             android:orientation="horizontal">
 
@@ -66,16 +66,26 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <ImageButton
+                <TextView
                     android:id="@+id/ib_message"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/chattingicon"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@string/app_name"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/tv_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:background="#00000000"
-                    android:clickable="false"
-                    android:contentDescription="把酒"
-                    android:src="@drawable/chattingicon" />
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
 
+                    android:gravity="center_horizontal"
+                    android:text="消息" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,16 +96,25 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <ImageButton
+                <TextView
                     android:id="@+id/ib_friend"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:background="@drawable/friendsicon" />
+
+                <TextView
+                    android:id="@+id/tv_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:background="#00000000"
-                    android:clickable="false"
-                    android:contentDescription="把酒"
-                    android:src="@drawable/friendsicon" />
-
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="好友" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,16 +125,25 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <ImageButton
+                <TextView
                     android:id="@+id/ib_activity"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:background="@drawable/activitiesicon" />
+
+                <TextView
+                    android:id="@+id/tv_activity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:background="#00000000"
-                    android:clickable="false"
-                    android:contentDescription="把酒"
-                    android:src="@drawable/activitiesicon" />
-
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="活动" />
             </LinearLayout>
 
         </LinearLayout>
@@ -123,38 +151,63 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view_Main"
-        android:layout_width="match_parent"
+
+    <!-- 左侧界面 -->
+    <LinearLayout
+        android:id="@+id/left"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header">
+        android:layout_gravity="left"
+        android:background="#fafafa"
+        android:orientation="vertical">
+        <!-- 系统在这里通过android:layout_gravity="left"判断是左面还是右面，没有就是主界面 -->
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
+            android:id="@+id/user_message"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:padding="10dp"
-            android:background="@drawable/navbackground">
+            android:layout_height="160dp"
+            android:background="@drawable/navbackground"
+            android:orientation="horizontal"
+            android:padding="20dip">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon_image_view_Main"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="20dip"
+                android:background="@mipmap/ic_launcher"></ImageView>
 
             <TextView
-                android:id="@+id/username_text_view_Main"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:layout_centerHorizontal="true"/>
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="30dip"
+                android:textSize="40sp" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-    </android.support.design.widget.NavigationView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="23sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/left_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

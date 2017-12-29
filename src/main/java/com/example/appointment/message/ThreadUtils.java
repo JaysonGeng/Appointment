@@ -1,11 +1,9 @@
-
-//线程切换工具，用于切换UI线程和网络线程
-
 package com.example.appointment.message;
 
 
 import android.os.Handler;
-/**
+
+/**线程切换工具，用于切换UI线程和网络线程
  * Created by MichaelOD on 2017/12/23.
  */
 public class ThreadUtils {

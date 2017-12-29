@@ -1,9 +1,8 @@
 
-//传输信息的类型
 
 package com.example.appointment.message;
 
-/**
+/**传输信息的类型
  * Created by MichaelOD on 2017/12/22.
  */
 

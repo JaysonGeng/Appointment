@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.appointment.Adapter.ChartMessageAdapter;
 import com.example.appointment.R;
-import com.example.appointment.core.AConnection;
+import com.example.appointment.View.LoginActivity;
 import com.example.appointment.core.AConnection.OnMessageListener;
 import com.example.appointment.core.ImApp;
 import com.example.appointment.message.AMessage;
@@ -26,11 +26,11 @@ import com.example.appointment.message.AMessageList;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ThreadUtils;
 import com.example.appointment.page.Main;
-import com.example.appointment.page.MainActivity;
+import com.example.appointment.page.Main2;
 
 import java.io.IOException;
 
-/**
+/**私聊的界面
  * Created by MichaelOD on 2017/12/24.
  */
 
@@ -71,10 +71,10 @@ public class ChartActivity extends Activity {
 
         msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
         msg.from = fromAccount;
-        msg.fromName=myname;
+        msg.fromName = myname;
         msg.to = toAccount;
         msg.content = inputStr;
-        msg.fromAvatar = R.mipmap.ic_launcher;
+        msg.fromAvatar =R.mipmap.ic_launcher;
 
         j.messageList.add(msg);
         // 数据集合有了，创建适配器
@@ -139,17 +139,17 @@ public class ChartActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.chartactivity);
-//        MainActivity.t=this;
+        LoginActivity.t = this;
 
-        title=(TextView)findViewById(R.id.title);
-        listView=(ListView)findViewById(R.id.listview);
-        input=(EditText)findViewById(R.id.input);
-        send=(Button)findViewById(R.id.send);
-        emoji1=(ImageView)findViewById(R.id.emoji1);
-        emoji2=(ImageView)findViewById(R.id.emoji2);
-        emoji3=(ImageView)findViewById(R.id.emoji3);
-        emoji4=(ImageView)findViewById(R.id.emoji4);
-        emoji5=(ImageView)findViewById(R.id.emoji5);
+        title = (TextView) findViewById(R.id.title);
+        listView = (ListView) findViewById(R.id.listview);
+        input = (EditText) findViewById(R.id.input);
+        send = (Button) findViewById(R.id.send);
+        emoji1 = (ImageView) findViewById(R.id.emoji1);
+        emoji2 = (ImageView) findViewById(R.id.emoji2);
+        emoji3 = (ImageView) findViewById(R.id.emoji3);
+        emoji4 = (ImageView) findViewById(R.id.emoji4);
+        emoji5 = (ImageView) findViewById(R.id.emoji5);
         send.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -168,11 +168,11 @@ public class ChartActivity extends Activity {
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
-                msg.content="表情";
-                msg.fromName=myname;
+                msg.content = "[Emoji]";
+                msg.fromName = myname;
                 msg.to = toAccount;
                 msg.emoji = "e01";
-                msg.fromAvatar = R.mipmap.ic_launcher;
+                msg.fromAvatar =R.mipmap.ic_launcher;
 
                 j.messageList.add(msg);
                 // 数据集合有了，创建适配器
@@ -213,11 +213,11 @@ public class ChartActivity extends Activity {
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
-                msg.fromName=myname;
-                msg.content="表情";
+                msg.fromName = myname;
+                msg.content = "[Emoji]";
                 msg.to = toAccount;
                 msg.emoji = "e02";
-                msg.fromAvatar = R.mipmap.ic_launcher;
+                msg.fromAvatar =R.mipmap.ic_launcher;
 
                 j.messageList.add(msg);
                 // 数据集合有了，创建适配器
@@ -258,11 +258,11 @@ public class ChartActivity extends Activity {
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
-                msg.fromName=myname;
-                msg.content="表情";
+                msg.fromName = myname;
+                msg.content = "[Emoji]";
                 msg.to = toAccount;
                 msg.emoji = "e03";
-                msg.fromAvatar = R.mipmap.ic_launcher;
+                msg.fromAvatar =R.mipmap.ic_launcher;
 
                 j.messageList.add(msg);
                 // 数据集合有了，创建适配器
@@ -303,11 +303,11 @@ public class ChartActivity extends Activity {
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
-                msg.fromName=myname;
-                msg.content="表情";
+                msg.fromName = myname;
+                msg.content = "[:DDDDDDD]";
                 msg.to = toAccount;
                 msg.emoji = "e04";
-                msg.fromAvatar = R.mipmap.ic_launcher;
+                msg.fromAvatar =R.mipmap.ic_launcher;
 
                 j.messageList.add(msg);
                 // 数据集合有了，创建适配器
@@ -348,8 +348,8 @@ public class ChartActivity extends Activity {
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
-                msg.fromName=myname;
-                msg.content="王的蔑视";
+                msg.fromName = myname;
+                msg.content = "[董叔的微笑]";
                 msg.to = toAccount;
                 msg.emoji = "e05";
                 msg.fromAvatar = R.mipmap.ic_launcher;
@@ -383,7 +383,7 @@ public class ChartActivity extends Activity {
                 });
             }
         });
-        Main.on1=true;
+        Main.on1 = true;
         app = (ImApp) getApplication();
         // 开启监听
         app.getMyConn().addOnMessageListener(listener);
@@ -404,21 +404,18 @@ public class ChartActivity extends Activity {
 
         title.setText(toNick);
         fromAccount = app.getMyNumber();// 我的账户
-        myname=app.getMyName();
+        myname = app.getMyName();
 
-        boolean check=false;
-        for(AMessageList a:app.getList())
-        {
-            if(a.listname.equals(toNick))
-            {
-                j=a;
-                check=true;
+        boolean check = false;
+        for (AMessageList a : app.getList()) {
+            if (a.listname.equals(toNick)) {
+                j = a;
+                check = true;
                 break;
             }
         }
-        if(!check)
-        {
-            j=new AMessageList(toNick);
+        if (!check) {
+            j = new AMessageList(toNick);
             app.getList().add(j);
         }
         adapter = new ChartMessageAdapter(this, j.messageList);
@@ -426,7 +423,7 @@ public class ChartActivity extends Activity {
 
     }
 
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         if (j.messageList.size() > 0) {
             listView.setSelection(j.messageList.size() - 1);
@@ -437,9 +434,10 @@ public class ChartActivity extends Activity {
     protected void onDestroy() {
 
         super.onDestroy();
-        Main.on1=false;
+        Main.on1 = false;
         app.getMyConn().removeOnMessageListener(listener);
-        if(j.getTop()==null)
+        if (j.getTop() == null)
             app.getList().remove(j);
     }
 }
+

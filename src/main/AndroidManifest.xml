@@ -4,6 +4,21 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name=".core.ImApp"
         android:allowBackup="true"
@@ -27,8 +42,14 @@
             android:name=".View.RegisterActivity"
             android:label="注册" />
         <activity
-            android:name=".page.MainActivity"
+            android:name=".page.Main"
             android:label="主界面" />
+        <activity
+            android:name=".chart.UserMessage"
+            android:label="用户信息" />
+        <activity
+            android:name=".chart.ChartActivity"
+            android:label="聊天界面" />
         <activity
             android:name=".View.SettingActivity"
             android:label="设置" />
@@ -64,7 +85,22 @@
             android:label="关于我们" />
         <activity android:name=".View.UserDetailActivity" />
         <activity android:name=".View.LogoActivity" />
-        <activity android:name=".page.Main"></activity>
+
+        <activity android:name=".View.Text"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
+
+        <activity android:name=".group.GroupChart">
+        </activity>
+        <activity android:name=".group.GroupActivity">
+        </activity>
+        <activity android:name="chart.ChartActivity">
+        </activity>
+        <activity android:name=".group.GroupMessage">
+        </activity>
+        <activity android:name=".group.NewGroup">
+        </activity>
+
     </application>
 
 </manifest>

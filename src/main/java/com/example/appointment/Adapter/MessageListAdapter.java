@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-/**
+/**消息列表的调试器
  * Created by MichaelOD on 2017/12/23.
  */
 
@@ -28,7 +28,7 @@ public class MessageListAdapter extends ArrayAdapter<AMessage> {
     //	传入上下文与集合
     public MessageListAdapter(Context context, List<AMessage> objects, ImApp app) {
         super(context, 0, objects);
-        this.app=app;
+        this.app = app;
     }
 
     class ViewHolder {
@@ -66,45 +66,39 @@ public class MessageListAdapter extends ArrayAdapter<AMessage> {
         }
         // 如果是自己登录的账号，则显示自己，否则显示账号
         // 获得保存在application中的自己登录的账号
-        String name="",content="";
-        if(info.type.equals(AMessageType.MSG_TYPE_CHAT_P2P)){
-            if(info.fromName.equals(app.getMyName()))
-            {
+        String name = "", content = "";
+        if (info.type.equals(AMessageType.MSG_TYPE_CHAT_P2P)) {
+            if (info.fromName.equals(app.getMyName())) {
                 String newBuddyListJson = app.getBuddyListJson();
                 Gson gson = new Gson();
                 ContactInfoList newList = gson.fromJson(
                         newBuddyListJson, ContactInfoList.class);
-                name=newList.get(info.to).name;
-                content=info.content;
-            }
-            else
-                name=info.fromName;
-            content=info.content;
-        }
-        else if(info.type.equals(AMessageType.MSG_TYPE_CHAT_ROOM)){
+                name = newList.get(info.to).name;
+                content = info.content;
+            } else
+                name = info.fromName;
+            content = info.content;
+        } else if (info.type.equals(AMessageType.MSG_TYPE_CHAT_ROOM)) {
             String newGroupListJson = app.getGroupListJson();
             Gson gson = new Gson();
             GroupList newList = gson.fromJson(
                     newGroupListJson, GroupList.class);
-            for(GroupInfo a:newList.groupList)
-            {
-                if(a.number==info.to)
-                    name=a.name;
+            for (GroupInfo a : newList.groupList) {
+                if (a.number == info.to)
+                    name = a.name;
             }
-            content=info.content;
+            content = info.content;
         }
         //好友消息
-        else if(info.type.equals(AMessageType.MSG_TYPE_ADDFRIEND)){
-            String y[]=info.fromName.split("add");
-            name=y[0]+"请求添加您为好友";
+        else if (info.type.equals(AMessageType.MSG_TYPE_ADDFRIEND)) {
+            String y[] = info.fromName.split("add");
+            name = y[0] + "请求添加您为好友";
         }
 
-        holder.title.setText(""+name );
+        holder.title.setText("" + name);
 
         holder.desc.setText(content);
         holder.time.setText(info.sendTime);
         return convertView;
     }
-
-
 }

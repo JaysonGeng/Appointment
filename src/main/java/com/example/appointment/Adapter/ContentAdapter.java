@@ -12,12 +12,11 @@ import com.example.appointment.R;
 
 import java.util.List;
 
-/**
+/**左侧侧拉菜单适配器类
  * Created by MichaelOD on 2017/12/23.
  */
 
 public class ContentAdapter extends BaseAdapter {
-
     //数据适配器
     private Context context;
     private List<ContentModel> list;
@@ -74,4 +73,5 @@ public class ContentAdapter extends BaseAdapter {
         public ImageView imageView;
         public TextView textView;
     }
+
 }

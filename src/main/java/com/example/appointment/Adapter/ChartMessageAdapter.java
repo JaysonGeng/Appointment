@@ -1,5 +1,7 @@
 package com.example.appointment.Adapter;
 
+
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -14,12 +16,11 @@ import com.example.appointment.message.AMessage;
 
 import java.util.List;
 
-/**
+/**聊天信息的调试器
  * Created by MichaelOD on 2017/12/23.
  */
 
 public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
-
     ImApp app;
 
     public ChartMessageAdapter(Context context, List<AMessage> objects) {
@@ -35,15 +36,15 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
         // 消息来自谁，如果消息来自我自己，说明是我发送的
         if (msg.from == app.getMyNumber()) {
             // 我自己的消息，发送
-            if(msg.emoji.equals("")){
+            if (msg.emoji.equals("")) {
                 return 0;
-            }else{
+            } else {
                 return 2;
             }
         } else {
-            if(msg.emoji.equals("")){
+            if (msg.emoji.equals("")) {
                 return 1;
-            }else{
+            } else {
                 return 3;
             }
         }
@@ -120,30 +121,44 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
             holder.head.setImageResource(msg.fromAvatar);
 
             int emojinum = 0;
-            if(msg.emoji.equals("e01")){
+            if (msg.emoji.equals("e01")) {
                 emojinum = 1;
             }
-            if(msg.emoji.equals("e02")){
+            if (msg.emoji.equals("e02")) {
                 emojinum = 2;
-            }if(msg.emoji.equals("e03")){
+            }
+            if (msg.emoji.equals("e03")) {
                 emojinum = 3;
-            }if(msg.emoji.equals("e04")){
+            }
+            if (msg.emoji.equals("e04")) {
                 emojinum = 4;
-            }if(msg.emoji.equals("e05")){
+            }
+            if (msg.emoji.equals("e05")) {
                 emojinum = 5;
             }
-            switch(emojinum){
-                case 1:holder.emoji.setImageResource(R.drawable.e01);break;
-                case 2:holder.emoji.setImageResource(R.drawable.e02);break;
-                case 3:holder.emoji.setImageResource(R.drawable.e03);break;
-                case 4:holder.emoji.setImageResource(R.drawable.e04);break;
-                case 5:holder.emoji.setImageResource(R.drawable.e05);break;
-                default:break;
+            switch (emojinum) {
+                case 1:
+                    holder.emoji.setImageResource(R.drawable.e01);
+                    break;
+                case 2:
+                    holder.emoji.setImageResource(R.drawable.e02);
+                    break;
+                case 3:
+                    holder.emoji.setImageResource(R.drawable.e03);
+                    break;
+                case 4:
+                    holder.emoji.setImageResource(R.drawable.e04);
+                    break;
+                case 5:
+                    holder.emoji.setImageResource(R.drawable.e05);
+                    break;
+                default:
+                    break;
             }
             return convertView;
 
         }
-        if(type==1) {
+        if (type == 1) {
             // 接收的布局
             ViewHolder holder;
             if (convertView == null) {
@@ -153,7 +168,7 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
                 holder.time = (TextView) convertView.findViewById(R.id.time);
                 holder.content = (TextView) convertView
                         .findViewById(R.id.content);
-                holder.name= (TextView) convertView
+                holder.name = (TextView) convertView
                         .findViewById(R.id.name);
                 holder.head = (ImageView) convertView.findViewById(R.id.head);
                 convertView.setTag(holder);
@@ -168,7 +183,8 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
             holder.content.setText(msg.content);
 
             return convertView;
-        }else{ViewHolder holder;
+        } else {
+            ViewHolder holder;
             if (convertView == null) {
                 convertView = View.inflate(getContext(),
                         R.layout.item_chat_receiveemoji, null);
@@ -176,7 +192,7 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
                 holder.time = (TextView) convertView.findViewById(R.id.time);
                 holder.emoji = (ImageView) convertView
                         .findViewById(R.id.emoji);
-                holder.name= (TextView) convertView
+                holder.name = (TextView) convertView
                         .findViewById(R.id.name);
                 holder.head = (ImageView) convertView.findViewById(R.id.head);
                 convertView.setTag(holder);
@@ -190,25 +206,39 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
             holder.name.setText(msg.fromName);
 
             int emojinum = 0;
-            if(msg.emoji.equals("e01")){
+            if (msg.emoji.equals("e01")) {
                 emojinum = 1;
             }
-            if(msg.emoji.equals("e02")){
+            if (msg.emoji.equals("e02")) {
                 emojinum = 2;
-            }if(msg.emoji.equals("e03")){
+            }
+            if (msg.emoji.equals("e03")) {
                 emojinum = 3;
-            }if(msg.emoji.equals("e04")){
+            }
+            if (msg.emoji.equals("e04")) {
                 emojinum = 4;
-            }if(msg.emoji.equals("e05")){
+            }
+            if (msg.emoji.equals("e05")) {
                 emojinum = 5;
             }
-            switch(emojinum){
-                case 1:holder.emoji.setImageResource(R.drawable.e01);break;
-                case 2:holder.emoji.setImageResource(R.drawable.e02);break;
-                case 3:holder.emoji.setImageResource(R.drawable.e03);break;
-                case 4:holder.emoji.setImageResource(R.drawable.e04);break;
-                case 5:holder.emoji.setImageResource(R.drawable.e05);break;
-                default:break;
+            switch (emojinum) {
+                case 1:
+                    holder.emoji.setImageResource(R.drawable.e01);
+                    break;
+                case 2:
+                    holder.emoji.setImageResource(R.drawable.e02);
+                    break;
+                case 3:
+                    holder.emoji.setImageResource(R.drawable.e03);
+                    break;
+                case 4:
+                    holder.emoji.setImageResource(R.drawable.e04);
+                    break;
+                case 5:
+                    holder.emoji.setImageResource(R.drawable.e05);
+                    break;
+                default:
+                    break;
             }
 
             return convertView;
@@ -216,7 +246,4 @@ public class ChartMessageAdapter extends ArrayAdapter<AMessage> {
         }
 
     }
-
-
-
 }

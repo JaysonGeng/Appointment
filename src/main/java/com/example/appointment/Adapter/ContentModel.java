@@ -1,10 +1,11 @@
 package com.example.appointment.Adapter;
 
-/**
+/**左侧侧拉菜单条目的类
  * Created by MichaelOD on 2017/12/23.
  */
 
 public class ContentModel {
+
     private int imageView;
     private String text;
     private int id;

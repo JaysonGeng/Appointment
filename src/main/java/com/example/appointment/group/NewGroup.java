@@ -1,9 +1,6 @@
-
-//新建群组的类
-
 package com.example.appointment.group;
 
-/**
+/**新建群组的类
  * Created by MichaelOD on 2017/12/26.
  */
 
@@ -14,7 +11,6 @@ import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +21,7 @@ import com.example.appointment.core.ImApp;
 import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ThreadUtils;
-import com.example.appointment.page.Main;
+import com.example.appointment.page.Main2;
 
 import org.w3c.dom.Text;
 
@@ -55,7 +51,7 @@ public class NewGroup extends Activity implements OnClickListener
 		Button.setOnClickListener(this);
 		app = (ImApp) getApplication();
 		app.getMyConn().addOnMessageListener(listener);
-		Main.on3=true;
+		Main2.on3=true;
 
 	}
 
@@ -102,7 +98,7 @@ public class NewGroup extends Activity implements OnClickListener
 	protected void onDestroy() {
 		super.onDestroy();
 		app.getMyConn().removeOnMessageListener(listener);
-		Main.on3=false;
+		Main2.on3=false;
 	}
 		
 		private AConnection.OnMessageListener listener = new AConnection.OnMessageListener() {
@@ -118,10 +114,7 @@ public class NewGroup extends Activity implements OnClickListener
 							Intent intent = new Intent(NewGroup.this,
 									GroupActivity.class);
 							startActivity(intent);
-															
-							Intent p=new Intent(NewGroup.this,Text.class);
-							p.putExtra("message", txt);
-							startActivity(p);
+							Toast.makeText(getBaseContext(), txt, 0).show();
 							finish();
 						}
 					}

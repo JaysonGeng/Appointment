@@ -17,17 +17,17 @@ import com.example.appointment.View.UserDetailActivity;
 
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context mContext;
     private List<User> mUser;
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView userIcon;
         TextView username;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
             userIcon = view.findViewById(R.id.icon_image_view_user_item);
@@ -35,16 +35,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         }
     }
 
-    public UserAdapter(List<User> userList){
+    public UserAdapter(List<User> userList) {
         mUser = userList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
-        if(mContext == null){
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mContext == null) {
             mContext = parent.getContext();
         }
-        View view = LayoutInflater.from(mContext).inflate(R.layout.user_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,12 +52,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                 int position = holder.getAdapterPosition();
                 User user = mUser.get(position);
                 Intent intent = new Intent(mContext, UserDetailActivity.class);
-                intent.putExtra("username",user.getName());
-                intent.putExtra("student_id",user.getStudentId());
-                intent.putExtra("nickname",user.getNickname());
-                intent.putExtra("sex",user.getSex());
-                intent.putExtra("campus",user.getCampus());
-                intent.putExtra("icon",user.getIcon());
+                intent.putExtra("username", user.getName());
+                intent.putExtra("student_id", user.getStudentId());
+                intent.putExtra("nickname", user.getNickname());
+                intent.putExtra("sex", user.getSex());
+                intent.putExtra("campus", user.getCampus());
+                intent.putExtra("icon", user.getIcon());
                 mContext.startActivity(intent);
             }
         });
@@ -65,14 +65,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder,int position){
+    public void onBindViewHolder(ViewHolder holder, int position) {
         User user = mUser.get(position);
         holder.username.setText(user.getNickname());
         Glide.with(mContext).load(user.getIcon()).into(holder.userIcon);
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return mUser.size();
     }
 

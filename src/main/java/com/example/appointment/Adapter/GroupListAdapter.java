@@ -13,18 +13,17 @@ import com.example.appointment.message.GroupInfo;
 
 import java.util.List;
 
-/**
+/**群组列表的调试器
  * Created by MichaelOD on 2017/12/23.
  */
 
 public class GroupListAdapter extends ArrayAdapter<GroupInfo> {
-
     ImApp app;
 
     //	 传入上下文与集合
     public GroupListAdapter(Context context, List<GroupInfo> objects, ImApp app) {
         super(context, 0, objects);
-        this.app=app;
+        this.app = app;
     }
 
     class ViewHolder {

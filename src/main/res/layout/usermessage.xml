@@ -51,14 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_toRightOf="@id/i1"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
             android:text="帐号"
             android:textSize="20sp"/>
         <TextView
             android:id="@+id/usernumber_text"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:textSize="20sp"/>
     </RelativeLayout>
@@ -79,17 +81,19 @@
             android:layout_height="48dp"
             android:layout_toRightOf="@id/i2"
             android:id="@+id/k2"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
             android:text="个性签名"
             android:textSize="20sp"/>
         <TextView
             android:id="@+id/usersign_text"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_below="@id/k2"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:textSize="20sp"/>
     </RelativeLayout>
 
@@ -109,12 +113,13 @@
             android:layout_height="48dp"
             android:layout_toRightOf="@id/i3"
             android:text="其他资料"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+
             android:layout_alignParentRight="true"
             android:layout_marginTop="11dp"
             android:text="我还没加上"

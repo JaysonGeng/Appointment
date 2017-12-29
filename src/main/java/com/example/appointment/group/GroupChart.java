@@ -1,9 +1,6 @@
-
-//群组聊天的类
-
 package com.example.appointment.group;
 
-/**
+/**群组聊天的类
  * Created by MichaelOD on 2017/12/26.
  */
 
@@ -34,8 +31,7 @@ import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageList;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ThreadUtils;
-import com.example.appointment.page.Main;
-import com.example.appointment.page.MainActivity;
+import com.example.appointment.page.Main2;
 
 public class GroupChart extends Activity {
 
@@ -72,7 +68,7 @@ public class GroupChart extends Activity {
 
 		msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 		msg.from = fromAccount;
-		msg.fromName = app.getMyName();
+		msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
 		msg.to = toAccount;
 		msg.content = inputStr;
 		msg.fromAvatar = R.mipmap.ic_launcher;
@@ -168,8 +164,8 @@ public class GroupChart extends Activity {
 
 				msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 				msg.from = fromAccount;
-				msg.fromName = app.getMyName();
-				msg.content="表情";
+				msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
+				msg.content="[Emoji]";
 				msg.to = toAccount;
 				msg.emoji = "e01";
 				msg.fromAvatar = R.mipmap.ic_launcher;
@@ -213,8 +209,8 @@ emoji2.setOnClickListener(new OnClickListener() {
 
 				msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 				msg.from = fromAccount;
-				msg.content="表情";
-				msg.fromName = app.getMyName();
+				msg.content="[Emoji]";
+				msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
 				msg.to = toAccount;
 				msg.emoji = "e02";
 				msg.fromAvatar = R.mipmap.ic_launcher;
@@ -258,8 +254,8 @@ emoji3.setOnClickListener(new OnClickListener() {
 
 		msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 		msg.from = fromAccount;
-		msg.fromName = app.getMyName();
-		msg.content="表情";
+		msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
+		msg.content="[Emoji]";
 		msg.to = toAccount;
 		msg.emoji = "e03";
 		msg.fromAvatar = R.mipmap.ic_launcher;
@@ -303,8 +299,8 @@ emoji4.setOnClickListener(new OnClickListener() {
 
 		msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 		msg.from = fromAccount;
-		msg.fromName = app.getMyName();
-		msg.content="表情";
+		msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
+		msg.content="[:DDDDDDD]";
 		msg.to = toAccount;
 		msg.emoji = "e04";
 		msg.fromAvatar = R.mipmap.ic_launcher;
@@ -348,8 +344,8 @@ emoji5.setOnClickListener(new OnClickListener() {
 
 		msg.type = AMessageType.MSG_TYPE_CHAT_ROOM;
 		msg.from = fromAccount;
-		msg.fromName = app.getMyName();
-		msg.content="王的蔑视";
+		msg.fromName = app.getMyName()+"("+app.getMyNumber()+")";
+		msg.content="[董叔的微笑]";
 		msg.to = toAccount;
 		msg.emoji = "e05";
 		msg.fromAvatar = R.mipmap.ic_launcher;
@@ -384,7 +380,7 @@ emoji5.setOnClickListener(new OnClickListener() {
 		
 	}
 });
-		Main.on2=true;
+		Main2.on2=true;
 		app = (ImApp) getApplication();
 		// 开启监听
 		app.getMyConn().addOnMessageListener(listener);
@@ -435,7 +431,7 @@ emoji5.setOnClickListener(new OnClickListener() {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Main.on2=false;
+		Main2.on2=false;
 		app.getMyConn().removeOnMessageListener(listener);
 		if(j.getTop()==null)
 			app.getList().remove(j);

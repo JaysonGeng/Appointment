@@ -1,9 +1,6 @@
-
-//群组信息的类
-
 package com.example.appointment.group;
 
-/**
+/**群组信息的类
  * Created by MichaelOD on 2017/12/26.
  */
 
@@ -16,7 +13,7 @@ import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.GroupList;
 import com.example.appointment.message.ThreadUtils;
-import com.example.appointment.page.Main;
+import com.example.appointment.page.Main2;
 import com.google.gson.Gson;
 
 import android.app.Activity;
@@ -70,7 +67,7 @@ public class GroupMessage extends Activity
 		groupname.setText(name);
 		groupnumber_text.setText(""+toAccount);
 		groupdescribe_text.setText(newList.get(toAccount).describe);
-		Main.on3=true;
+		Main2.on3=true;
 		
 		//根据不同的状态显示按钮不同的文字
 		if(newList.get(toAccount).member.contains(""+app.getMyNumber()))
@@ -129,6 +126,6 @@ public class GroupMessage extends Activity
 	}
 	protected void onDestroy() {
 		super.onDestroy();
-		Main.on3=false;
+		Main2.on3=false;
 	}
 }

@@ -1,11 +1,9 @@
-
-//可以放在好友列表的用户类
-
 package com.example.appointment.message;
 
 
 import com.example.appointment.R;
-/**
+
+/**可以放在好友列表的用户类
  * Created by MichaelOD on 2017/12/23.
  */
 public class UserInfo
@@ -23,12 +21,12 @@ public class UserInfo
         this.sign = a.sign;
         this.number = a.number;
         if(a.avatar==0)
-//        	this.avatar= R.drawable.ic_launcher;
-//        else
-//        	this.avatar = a.avatar;
-		this.groupInfo =inf;
-		this.online=a.online;
-         
+            this.avatar=R.mipmap.ic_launcher;
+        else
+            this.avatar = a.avatar;
+        this.groupInfo =inf;
+        this.online=a.online;
+
     }
-    
+
 }

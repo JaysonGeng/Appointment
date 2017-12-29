@@ -25,7 +25,7 @@ import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ContactInfoList;
 import com.example.appointment.message.ThreadUtils;
-import com.example.appointment.page.Main;
+import com.example.appointment.page.Main2;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class UserMessage extends Activity
 		other_bar=(RelativeLayout)findViewById(R.id.other_bar);
 		button=(Button)findViewById(R.id.user_button);
 //		MainActivity.t=this;
-		Main.on3=true;
+		Main2.on3=true;
 		app = (ImApp) getApplication();
 		
 		Intent intent = getIntent();
@@ -198,6 +198,6 @@ public class UserMessage extends Activity
 	}
 	protected void onDestroy() {
 		super.onDestroy();
-		Main.on3=false;
+		Main2.on3=false;
 	}
 }

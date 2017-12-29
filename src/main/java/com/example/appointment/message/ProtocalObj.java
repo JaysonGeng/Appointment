@@ -1,9 +1,6 @@
-
-//用于把java类转换为xml文件和json串，各个信息存储类的父类，是程序信息传输的核心
-
-
 package com.example.appointment.message;
-/**
+
+/**用于把java类转换为xml文件和json串，各个信息存储类的父类，是程序信息传输的核心
  * Created by MichaelOD on 2017/12/22.
  */
 

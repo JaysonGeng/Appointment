@@ -1,9 +1,6 @@
-
-//群组界面的类
-
 package com.example.appointment.group;
 
-/**
+/**群组界面的类
  * Created by MichaelOD on 2017/12/26.
  */
 
@@ -13,7 +10,7 @@ import com.example.appointment.R;
 import com.example.appointment.core.ImApp;
 import com.example.appointment.message.GroupInfo;
 import com.example.appointment.message.GroupList;
-import com.example.appointment.page.Main;
+import com.example.appointment.page.Main2;
 import com.google.gson.Gson;
 
 import android.app.Activity;
@@ -45,7 +42,7 @@ public class GroupActivity extends Activity
 		setContentView(R.layout.group);
 		list=(ListView)findViewById(R.id.grouplist);
 		newgroup=(Button)findViewById(R.id.newgroup_button);
-		Main.on3=true;
+		Main2.on3=true;
 		
 		//创建群组
   		newgroup.setOnClickListener(new OnClickListener() {
@@ -92,6 +89,6 @@ public class GroupActivity extends Activity
 	protected void onDestroy()
 	{
 		super.onDestroy();
-		Main.on3=false;
+		Main2.on3=false;
 	}
 }
