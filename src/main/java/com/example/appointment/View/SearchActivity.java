@@ -1,5 +1,7 @@
 package com.example.appointment.View;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +30,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initEvent(){
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
         //加载工具栏
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

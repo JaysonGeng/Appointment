@@ -3,21 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/xx_logo2"
     android:orientation="vertical"
     tools:context=".View.LoginActivity">
 
     <!-- 标题 -->
 
-    <TextView
-        android:id="@+id/title"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_Chart"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#026464"
-        android:gravity="center"
-        android:text="与xxx聊天中"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbarbackground"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
     <!-- 列表 -->
     <!-- cacheColorHint缓存颜色 -->
 

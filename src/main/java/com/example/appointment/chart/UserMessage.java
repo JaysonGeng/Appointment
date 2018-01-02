@@ -30,8 +30,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-public class UserMessage extends Activity
-{
+public class UserMessage extends Activity {
 	private LinearLayout usermain;
 	private TextView username;
 	private RelativeLayout usernumber_bar;

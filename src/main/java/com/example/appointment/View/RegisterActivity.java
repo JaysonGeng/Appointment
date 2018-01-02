@@ -2,6 +2,8 @@ package com.example.appointment.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -112,6 +114,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
         editor.putString("campus","");

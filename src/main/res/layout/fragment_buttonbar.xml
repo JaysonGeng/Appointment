@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/activitiesicon"
+        android:background="@drawable/chattingicon"
         android:layout_marginLeft="30dp"
         android:layout_centerVertical="true"/>
 
@@ -21,16 +21,16 @@
     <TextView
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/chattingicon"
+        android:background="@drawable/activitiesicon"
         android:layout_marginRight="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"/>
 
     <TextView
-        android:id="@+id/activity_list_checked_text_view_Main"
+        android:id="@+id/chatting_list_checked_text_view_Main"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/activity_checked"
+        android:background="@drawable/chatting_checked"
         android:layout_marginLeft="30dp"
         android:layout_centerVertical="true"/>
 
@@ -44,26 +44,26 @@
         android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/chatting_list_checked_text_view_Main"
+        android:id="@+id/activity_list_checked_text_view_Main"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/chatting_checked"
+        android:background="@drawable/activity_checked"
         android:layout_marginRight="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/activity_list_text_view_Main"
+        android:id="@+id/ll_tab1_message"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/activitiesicon"
+        android:background="@drawable/chattingicon"
         android:layout_marginLeft="30dp"
         android:layout_centerVertical="true"
         android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/friend_list_text_view_Main"
+        android:id="@+id/ll_tab1_friend"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:background="@drawable/friendsicon"
@@ -71,10 +71,10 @@
         android:layout_centerVertical="true"/>
 
     <TextView
-        android:id="@+id/chatting_list_text_view_Main"
+        android:id="@+id/ll_tab1_activity"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/chattingicon"
+        android:background="@drawable/activitiesicon"
         android:layout_marginRight="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"/>

@@ -3,78 +3,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/xx_logo2"
     android:orientation="vertical"
     tools:context=".View.LoginActivity">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginBottom="20dp"
-        android:baselineAligned="false"
-        android:background="#026464"
-        android:orientation="horizontal">
+        android:layout_height="10dp"
+        android:background="@drawable/buttonbarbackground"/>
 
-        <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@drawable/buttonbarbackground">
+
+        <ImageButton
             android:id="@+id/myfriend"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
+            android:clickable="false"
+            android:layout_marginLeft="60dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/searchicon" />
 
-            <ImageButton
-                android:id="@+id/ib_myfriend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#00000000"
-                android:clickable="false"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/searchicon" />
+        <TextView
+            android:id="@+id/tv_myfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="80dp"
+            android:text="查找"
+            android:textColor="#fafafa"/>
 
-            <TextView
-                android:id="@+id/tv_myfriend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_horizontal"
-                android:text="查找"
-                android:textColor="#fafafa"/>
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
             android:id="@+id/group"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
+            android:clickable="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/friendsicon" />
 
-            <ImageButton
-                android:id="@+id/ib_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#00000000"
-                android:clickable="false"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/friendsicon" />
+        <TextView
+            android:id="@+id/tv_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:text="群组"
+            android:textColor="#fafafa"/>
 
-            <TextView
-                android:id="@+id/tv_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_horizontal"
-                android:text="群组"
-                android:textColor="#fafafa"/>
-        </LinearLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F2F2F2"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"/>
 
     <ExpandableListView
         android:id="@+id/qq_list"

@@ -1,6 +1,8 @@
 package com.example.appointment.View;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,11 @@ public class UserDetailActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
         //加载工具栏
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

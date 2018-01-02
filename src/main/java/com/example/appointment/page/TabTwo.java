@@ -32,6 +32,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -45,8 +46,8 @@ public class TabTwo extends Fragment {
 		t = context;
 	}
 
-	private LinearLayout myfriend;
-	private LinearLayout group;
+	private ImageButton myfriend;
+	private ImageButton group;
 	int[] photoRes = {R.mipmap.ic_launcher};
 
 	String[] groupFrom = {"groupImage", "groupName", "childCount"};
@@ -70,8 +71,8 @@ public class TabTwo extends Fragment {
 
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		myfriend = (LinearLayout) getActivity().findViewById(R.id.myfriend);
-		group = (LinearLayout) getActivity().findViewById(R.id.group);
+		myfriend =  getActivity().findViewById(R.id.myfriend);
+		group =  getActivity().findViewById(R.id.group);
 
 		myfriend.setOnClickListener(new OnClickListener() {
 
@@ -153,8 +154,8 @@ public class TabTwo extends Fragment {
 			}
 		});
 
-		groupData = new ArrayList<HashMap<String, Object>>();
-		childData = new ArrayList<ArrayList<HashMap<String, Object>>>();
+		groupData = new ArrayList<>();
+		childData = new ArrayList<>();
 		// 数据保存在application中
 		app = (ImApp) getActivity().getApplication();
 		// 获取长连接，往长连接里添加监听,时刻监听服务器返回来的消息,如果有消息到达，就执行onReceive

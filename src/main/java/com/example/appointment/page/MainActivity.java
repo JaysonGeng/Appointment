@@ -89,8 +89,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void initView(){
 
-
-
         toolbar = findViewById(R.id.toolbar_Main);
         username_show = findViewById(R.id.username_text_view_Main);
         mDrawerLayout = findViewById(R.id.drawer_layout_Main);
@@ -100,9 +98,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         stage3 = findViewById(R.id.stage3_frame_layout_Main);
         navView = findViewById(R.id.nav_view_Main);
         commit = findViewById(R.id.commit_floating_button_Main);
-        activity = findViewById(R.id.activity_list_text_view_Main);
-        friend = findViewById(R.id.friend_list_text_view_Main);
-        chatting = findViewById(R.id.chatting_list_text_view_Main);
+        chatting =  findViewById(R.id.ll_tab1_message);
+        friend =  findViewById(R.id.ll_tab1_friend);
+        activity =  findViewById(R.id.ll_tab1_activity);
         activity_checked = findViewById(R.id.activity_list_checked_text_view_Main);
         friend_checked = findViewById(R.id.friend_list_checked_text_view_Main);
         chatting_checked = findViewById(R.id.chatting_list_checked_text_view_Main);
@@ -219,7 +217,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 intent.setClass(MainActivity.this,CommitActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.activity_list_text_view_Main:
+            case R.id.ll_tab1_activity:
                 OnClickView.click_small(activity,activity_checked);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -235,7 +233,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 stage2.setVisibility(View.GONE);
                 stage3.setVisibility(View.GONE);
                 break;
-            case R.id.friend_list_text_view_Main:
+            case R.id.ll_tab1_friend:
                 OnClickView.click_small(friend,friend_checked);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -251,7 +249,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 stage2.setVisibility(View.VISIBLE);
                 stage3.setVisibility(View.GONE);
                 break;
-            case R.id.chatting_list_text_view_Main:
+            case R.id.ll_tab1_message:
                 OnClickView.click_small(chatting,chatting_checked);
                 new Handler().postDelayed(new Runnable() {
                     @Override

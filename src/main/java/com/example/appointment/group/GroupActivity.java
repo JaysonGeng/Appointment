@@ -16,6 +16,13 @@ import com.google.gson.Gson;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -27,11 +34,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupActivity extends Activity
-{
-	ListView list;
+public class GroupActivity extends AppCompatActivity {
+
+	private RecyclerView list;
+	private Toolbar toolbar;
 	private Button newgroup;
-	private List<GroupInfo> infos = new ArrayList<GroupInfo>();
+	private List<GroupInfo> infos = new ArrayList<>();
 	private ImApp app;
 	private GroupListAdapter adapter;
 	
@@ -40,10 +48,18 @@ public class GroupActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.group);
-		list=(ListView)findViewById(R.id.grouplist);
+		toolbar = findViewById(R.id.toolbar_Group);
+		list = findViewById(R.id.grouplist);
 		newgroup=(Button)findViewById(R.id.newgroup_button);
 		Main2.on3=true;
-		
+
+		//加载工具栏
+		setSupportActionBar(toolbar);
+		ActionBar actionBar = getSupportActionBar();
+		if(actionBar != null){
+			actionBar.setDisplayHomeAsUpEnabled(true);
+		}
+
 		//创建群组
   		newgroup.setOnClickListener(new OnClickListener() {
 
@@ -66,29 +82,33 @@ public class GroupActivity extends Activity
 			if(a.member.contains(""+app.getMyNumber()))
 				infos.add(a);
 		}
-		
-		adapter = new GroupListAdapter(getBaseContext(), infos,app);
+
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		list.setLayoutManager(layoutManager);
+		adapter = new GroupListAdapter(infos);
 		list.setAdapter(adapter);
-		
-		list.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-				// 获得当前点击条目的信息.包含账号和昵称
-				GroupInfo info = infos.get(position);
-				// 不能跟自己聊天
-
-					Intent intent = new Intent(GroupActivity.this,
-							GroupMessage.class);
-					// 将账号和个性签名带到下一个activity
-					intent.putExtra("account", info.number);
-					startActivity(intent);
-			}
-		});
 	}
-	protected void onDestroy()
-	{
+	protected void onDestroy() {
 		super.onDestroy();
 		Main2.on3=false;
+	}
+
+	//加载toolbar菜单文件
+	public boolean onCreateOptionsMenu(Menu menu){
+		getMenuInflater().inflate(R.menu.toolbar_general,menu);
+		return true;
+	}
+
+	//设置工具栏按钮的点击事件
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+			case android.R.id.home:
+				finish();
+				break;
+			default:
+				break;
+		}
+		return true;
 	}
 }

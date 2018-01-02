@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="5dip"
-    android:orientation="horizontal" 
+    android:layout_height="50dp"
     android:background="#eeeeee">
 
     <ImageView
         android:id="@+id/groupImage"
-        android:layout_width="match_parent"
-        android:layout_height="15dip"
-        android:layout_weight="1.8"
-        android:layout_gravity="center" />
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:id="@+id/groupName"
-        android:layout_width="match_parent"
-        android:layout_height="30dip"
-        android:layout_weight="1"
-        android:paddingLeft="15dip"
-        android:paddingTop="5dip"
-        android:textSize="7pt"
-        android:text="fdg" />
-    <TextView 
-        android:id="@+id/childCount"
-        android:layout_width="match_parent"
-        android:layout_height="30dip"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:paddingRight="10dip"
-        android:paddingTop="5dip"
-        android:text="ewsf"
-        android:textSize="7pt"/>
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/groupImage"
+        android:layout_toRightOf="@+id/groupImage"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/childCount"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:textSize="15sp" />
+
+</RelativeLayout>

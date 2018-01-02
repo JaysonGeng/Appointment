@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -24,9 +29,9 @@ import com.example.appointment.core.ImApp;
 import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageList;
 import com.example.appointment.message.AMessageType;
+import com.example.appointment.message.MyTime;
 import com.example.appointment.message.ThreadUtils;
 import com.example.appointment.page.Main;
-import com.example.appointment.page.Main2;
 
 import java.io.IOException;
 
@@ -34,9 +39,8 @@ import java.io.IOException;
  * Created by MichaelOD on 2017/12/24.
  */
 
-public class ChartActivity extends Activity {
+public class ChartActivity extends AppCompatActivity {
 
-    private TextView title;
     private ListView listView;
     private EditText input;
     private ImApp app;
@@ -46,11 +50,12 @@ public class ChartActivity extends Activity {
     private ImageView emoji3;
     private ImageView emoji4;
     private ImageView emoji5;
+    private Toolbar toolbar;
     private ChartMessageAdapter adapter;
     // 这是点击的用户，也就是你要发消息给谁
-    private String toNick;// 要发送给谁
+    private String toNick = "";// 要发送给谁
     private long toAccount;// 要发送的账号
-    private long fromAccount;// 我的账号，我要跟谁睡聊天
+    private long fromAccount;// 我的账号，我要跟谁聊天
     private String inputStr;// 聊天内容
     private String myname;
     AMessageList j;
@@ -141,7 +146,14 @@ public class ChartActivity extends Activity {
         setContentView(R.layout.chartactivity);
         LoginActivity.t = this;
 
-        title = (TextView) findViewById(R.id.title);
+        //加载工具栏
+        toolbar = findViewById(R.id.toolbar_Chart);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         listView = (ListView) findViewById(R.id.listview);
         input = (EditText) findViewById(R.id.input);
         send = (Button) findViewById(R.id.send);
@@ -164,7 +176,6 @@ public class ChartActivity extends Activity {
                 // TODO 自动生成的方法存根
 
                 final AMessage msg = new AMessage();
-
 
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
@@ -300,7 +311,6 @@ public class ChartActivity extends Activity {
                 // TODO 自动生成的方法存根
                 final AMessage msg = new AMessage();
 
-
                 msg.type = AMessageType.MSG_TYPE_CHAT_P2P;
                 msg.from = fromAccount;
                 msg.fromName = myname;
@@ -308,6 +318,7 @@ public class ChartActivity extends Activity {
                 msg.to = toAccount;
                 msg.emoji = "e04";
                 msg.fromAvatar =R.mipmap.ic_launcher;
+                msg.sendTime = MyTime.geTime();
 
                 j.messageList.add(msg);
                 // 数据集合有了，创建适配器
@@ -391,7 +402,6 @@ public class ChartActivity extends Activity {
         // 聊天的界面是复杂的listView。发送消息的条目是item_chat_send.xml布局，接收到的消息现实的条目是item_chat_receive.xml布局
         // 获得从上一个界面获取的账号与昵称
         Intent intent = getIntent();
-        toNick = intent.getStringExtra("nick");
         toAccount = Long.parseLong(intent.getStringExtra("account"));
 
         input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -402,7 +412,6 @@ public class ChartActivity extends Activity {
         //水平滚动设置为False
         input.setHorizontallyScrolling(false);
 
-        title.setText(toNick);
         fromAccount = app.getMyNumber();// 我的账户
         myname = app.getMyName();
 
@@ -438,6 +447,35 @@ public class ChartActivity extends Activity {
         app.getMyConn().removeOnMessageListener(listener);
         if (j.getTop() == null)
             app.getList().remove(j);
+    }
+
+    //加载toolbar菜单文件
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_general,menu);
+        return true;
+    }
+
+    //设置工具栏按钮的点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        toNick = intent.getStringExtra("nick");
+        super.onPostCreate(savedInstanceState);
+        if (toolbar != null) {
+            toolbar.setTitle(toNick);
+        }
     }
 }
 

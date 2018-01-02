@@ -1,30 +1,36 @@
 package com.example.appointment.page;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationSet;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appointment.Adapter.ContentAdapter;
-import com.example.appointment.Adapter.ContentModel;
+import com.example.appointment.Dao.ActivityCollector;
+import com.example.appointment.Dao.OnClickView;
 import com.example.appointment.R;
 import com.example.appointment.View.FeedbackActivity;
 import com.example.appointment.View.LoginActivity;
+import com.example.appointment.View.PersonalInformationActivity;
 import com.example.appointment.View.SearchActivity;
 import com.example.appointment.View.SettingActivity;
 import com.example.appointment.chart.ChartActivity;
@@ -32,50 +38,36 @@ import com.example.appointment.chart.UserMessage;
 import com.example.appointment.core.AConnection;
 import com.example.appointment.core.ImApp;
 import com.example.appointment.group.GroupChart;
-import com.example.appointment.group.GroupMessage;
 import com.example.appointment.message.AMessage;
 import com.example.appointment.message.AMessageType;
-import com.example.appointment.message.ContactInfo;
 import com.example.appointment.message.ContactInfoList;
-import com.example.appointment.message.GroupInfo;
-import com.example.appointment.message.GroupList;
 import com.example.appointment.message.ThreadUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.appointment.View.LoginActivity.t;
+public class Main extends AppCompatActivity implements View.OnClickListener {
 
-/**
- * Created by MichaelOD on 2017/12/28.
- */
-
-public class Main extends FragmentActivity implements View.OnClickListener {
-
+    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private List<ContentModel> list;
-    private ContentAdapter adapter;
-    private ImageView leftMenu, rightMenu;
-    private ListView listView;
     private FragmentManager fm;
-    private LinearLayout ll_tab1_message;
-    private LinearLayout ll_tab1_friend;
-    private LinearLayout ll_tab1_activity;
-
     private TextView message;
     private TextView friend;
     private TextView activity;
-    private TextView maintext;
+    private TextView activity_checked;
+    private TextView friend_checked;
+    private TextView chatting_checked;
+    private NavigationView navView;
+    private LinearLayout transition;
+
     private TextView usersign;
-    private LinearLayout user_message;
     ImApp app;
     public int h = R.id.ll_tab1_message;//目前显示的页面变量
     public static boolean on1 = false; //私聊界面开启的开关
     public static boolean on2 = false; //群聊界面开启的开关
     public static boolean on3 = false; //其他界面开启的开关
     private boolean exit = false;        //退出的开关
+    private long firstClickBack = 0;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -84,26 +76,45 @@ public class Main extends FragmentActivity implements View.OnClickListener {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 
-        leftMenu = (ImageView) findViewById(R.id.leftmenu);
-        rightMenu = (ImageView) findViewById(R.id.rightmenu);
-        user_message = (LinearLayout) findViewById(R.id.user_message);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        ActivityCollector.addActivity(this);
+
+        transition = findViewById(R.id.fragment_layout);
+
+        AnimationSet animationSet = new AnimationSet(true);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0,1);
+        alphaAnimation.setStartOffset(300);
+        alphaAnimation.setDuration(2000);
+        animationSet.addAnimation(alphaAnimation);
+        transition.setAnimation(animationSet);
+
+        drawerLayout =  findViewById(R.id.drawerlayout);
+        toolbar = findViewById(R.id.toolbar_Main);
         fm = getSupportFragmentManager();
         ChartActivity.u = this;
         GroupChart.u = this;
 
-        ll_tab1_message = (LinearLayout) findViewById(R.id.ll_tab1_message);
-        ll_tab1_friend = (LinearLayout) findViewById(R.id.ll_tab1_friend);
-        ll_tab1_activity = (LinearLayout) findViewById(R.id.ll_tab1_activity);
-        message = (TextView) findViewById(R.id.tv_message);
-        friend = (TextView) findViewById(R.id.tv_friend);
-        activity = (TextView) findViewById(R.id.tv_activity);
-        maintext = (TextView) findViewById(R.id.maintext);
-        message.setTextColor(getResources().getColor(R.color.SDUred));
+        message =  findViewById(R.id.ll_tab1_message);
+        friend =  findViewById(R.id.ll_tab1_friend);
+        activity =  findViewById(R.id.ll_tab1_activity);
+        activity_checked = findViewById(R.id.activity_list_checked_text_view_Main);
+        friend_checked = findViewById(R.id.friend_list_checked_text_view_Main);
+        chatting_checked = findViewById(R.id.chatting_list_checked_text_view_Main);
 
-        ll_tab1_message.setOnClickListener(this);
-        ll_tab1_friend.setOnClickListener(this);
-        ll_tab1_activity.setOnClickListener(this);
+        message.setOnClickListener(this);
+        friend.setOnClickListener(this);
+        activity.setOnClickListener(this);
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
+        //加载工具栏
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.selffunctionicon);
+        }
 
         // 数据保存在application中
         app = (ImApp) getApplication();
@@ -140,9 +151,10 @@ public class Main extends FragmentActivity implements View.OnClickListener {
             }
         });
 
-        TextView textView = (TextView) findViewById(R.id.username);
+        TextView textView = findViewById(R.id.username);
         textView.setText(app.getMyName());
-        usersign = (TextView) findViewById(R.id.user_sign);
+        usersign = findViewById(R.id.user_sign);
+        navView = findViewById(R.id.nav_view_Main);
         String newBuddyListJson = app.getBuddyListJson();
         Gson gson = new Gson();
         ContactInfoList newList = gson.fromJson(newBuddyListJson, ContactInfoList.class);
@@ -153,23 +165,8 @@ public class Main extends FragmentActivity implements View.OnClickListener {
                 .add(R.id.content, new TabOne(Main.this))
                 .commit();
 
-        //以下这段给ListView赋值
-        listView = (ListView) findViewById(R.id.left_listview);
-        initData();
-        adapter = new ContentAdapter(this, list);
-        listView.setAdapter(adapter);
 
-        //调出左边菜单的按钮设置
-        leftMenu.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.LEFT);
-            }
-        });
-
-        user_message.setOnClickListener(new View.OnClickListener() {
-
+        navView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -179,47 +176,32 @@ public class Main extends FragmentActivity implements View.OnClickListener {
             }
         });
 
-        rightMenu.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Main.this,SearchActivity.class));
-
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                Intent intent = new Intent();
+                switch (item.getItemId()){
+                    case R.id.nav_information:
+                        intent.setClass(Main.this,PersonalInformationActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_setting:
+                        intent.setClass(Main.this,SettingActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_feedback:
+                        intent.setClass(Main.this,FeedbackActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_administrator:
+                        Toast.makeText(Main.this,"功能暂未开放",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
             }
-            //查找按钮
         });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-
-    {
-
-//			每次点击之后，就用相应的Fragment替换主界面的LinearLayout，
-//			当然，替换完成之后要记得关闭左边的侧拉菜单，传入的参数为Gravity.LEFT表示关闭左边的侧拉菜单，。
-
-        @Override
-        public void onItemClick (AdapterView < ? > parent, View view,
-        int position, long id){
-        FragmentTransaction bt = fm.beginTransaction();
-        switch ((int) id) {
-            case 1:
-                Intent intent = new Intent(Main.this, UserMessage.class);
-                // 将账号和个性签名带到下一个activity
-                intent.putExtra("number", app.getMyNumber());
-                startActivity(intent);
-                break;
-            case 2:
-                startActivity(new Intent(Main.this, FeedbackActivity.class));
-                break;
-            case 3:
-                startActivity(new Intent(Main.this, SettingActivity.class));
-                break;
-            default:
-                break;
-        }
-        bt.commit();
-        drawerLayout.closeDrawer(Gravity.LEFT);
-    }
-    });
 
 }
 
@@ -308,96 +290,93 @@ public class Main extends FragmentActivity implements View.OnClickListener {
 
     //底部按钮切换的点击监听器
     public void onClick(View view) {
-        setTabImageNormal();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         h = view.getId();
         switch (h) {
             case R.id.ll_tab1_message:
+                OnClickView.click_small(message,chatting_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.setVisibility(View.VISIBLE);
+                        friend.setVisibility(View.VISIBLE);
+                        activity_checked.setVisibility(View.GONE);
+                        friend_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabOne(Main.this));
-                message.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("消息");
+                toolbar.setTitle("消息");
                 transaction.commit();
-
                 break;
             case R.id.ll_tab1_friend:
+                OnClickView.click_small(friend,friend_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.VISIBLE);
+                        activity_checked.setVisibility(View.GONE);
+                        chatting_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabTwo(Main.this));
-                friend.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("好友");
+                toolbar.setTitle("好友");
                 transaction.commit();
-
                 break;
             case R.id.ll_tab1_activity:
+                OnClickView.click_small(activity,activity_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        friend.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.VISIBLE);
+                        friend_checked.setVisibility(View.GONE);
+                        chatting_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabThree(Main.this));
-                activity.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("活动");
+                toolbar.setTitle("活动");
                 transaction.commit();
                 break;
             default:
                 break;
         }
     }
-    //将底部按钮设置回正常
-    public void setTabImageNormal() {
 
-        int normalColor = getResources().getColor(R.color.black);
-        message.setTextColor(normalColor);
-        friend.setTextColor(normalColor);
-        activity.setTextColor(normalColor);
-    }
-
-    //设置侧拉菜单
-    private void initData() {
-        list = new ArrayList<ContentModel>();
-
-        //初始化左侧菜单的选项
-        list.add(new ContentModel(R.drawable.imformationicon, "个人信息", 1));
-        list.add(new ContentModel(R.drawable.feedbackicon, "意见反馈", 2));
-        list.add(new ContentModel(R.drawable.settingicon, "设置", 3));
-        list.add(new ContentModel(R.drawable.administratoricon, "管理员", 4));
-
-    }
-
-
-    //按返回键的确认窗口
-    public void onBackPressed() {
-        new AlertDialog.Builder(this).setTitle("确定要退出吗？")
-                .setIcon(android.R.drawable.ic_menu_help)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // 点击“确认”后的操作
-                        ThreadUtils.runInSubThread(new Runnable() {
-                            public void run() {
-                                try {
-                                    AMessage msg = new AMessage();
-                                    msg.type = AMessageType.MSG_TYPE_LOGOUT;
-                                    msg.from = app.getMyNumber();
-                                    app.getMyConn().sendMessage(msg);
-                                    exit = true;
-                                    try {
-                                        app.getMyConn().disConnect();
-                                    } catch (IOException e) {
-                                    }
-                                    app.clearList();
-                                    finish();
-                                } catch (Exception e) {
-                                    finish();
-                                }
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            long secondClickBack = System.currentTimeMillis();
+            if (secondClickBack - firstClickBack > 1500){
+                Toast.makeText(Main.this,"  再次点击返回以退出   ",Toast.LENGTH_SHORT).show();
+                firstClickBack = secondClickBack;
+                return true;
+            }else {
+                ThreadUtils.runInSubThread(new Runnable() {
+                    public void run() {
+                        try {
+                            AMessage msg = new AMessage();
+                            msg.type = AMessageType.MSG_TYPE_LOGOUT;
+                            msg.from = app.getMyNumber();
+                            app.getMyConn().sendMessage(msg);
+                            exit = true;
+                            try {
+                                app.getMyConn().disConnect();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                        });
-
+                            app.clearList();
+                            finish();
+                        } catch (Exception e) {
+                            finish();
+                        }
                     }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // 点击“返回”后的操作,这里不设置没有任何操作
-                    }
-                }).show();
+                });
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode,event);
     }
-
 
     protected void onDestroy() {
         super.onDestroy();
@@ -418,6 +397,8 @@ public class Main extends FragmentActivity implements View.OnClickListener {
                 }
             });
         }
+        //删除该活动
+        ActivityCollector.removeActivity(this);
     }
 
     //切回时刷新页面
@@ -426,27 +407,79 @@ public class Main extends FragmentActivity implements View.OnClickListener {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (h) {
             case R.id.ll_tab1_message:
+                OnClickView.click_small(message,chatting_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.setVisibility(View.VISIBLE);
+                        friend.setVisibility(View.VISIBLE);
+                        activity_checked.setVisibility(View.GONE);
+                        friend_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabOne(Main.this));
-                message.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("消息");
+                toolbar.setTitle("消息");
                 transaction.commit();
-
                 break;
             case R.id.ll_tab1_friend:
+                OnClickView.click_small(friend,friend_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.VISIBLE);
+                        activity_checked.setVisibility(View.GONE);
+                        chatting_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabTwo(Main.this));
-                friend.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("好友");
+                toolbar.setTitle("好友");
                 transaction.commit();
                 break;
             case R.id.ll_tab1_activity:
+                OnClickView.click_small(activity,activity_checked);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        friend.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.VISIBLE);
+                        friend_checked.setVisibility(View.GONE);
+                        chatting_checked.setVisibility(View.GONE);
+                    }
+                },500);
                 transaction.replace(R.id.content, new TabThree(Main.this));
-                activity.setTextColor(getResources().getColor(R.color.SDUred));
-                maintext.setText("活动");
+                toolbar.setTitle("活动");
                 transaction.commit();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    //加载toolbar菜单文件
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_main,menu);
+        return true;
+    }
+
+    //设置工具栏按钮的点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.search:
+                Intent intent =new Intent();
+                intent.setClass(Main.this,SearchActivity.class);
+                startActivity(intent);
+                break;
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
                 break;
             default:
                 break;
         }
+        return true;
+
     }
 
 }

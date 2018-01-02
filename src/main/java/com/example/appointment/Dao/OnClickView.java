@@ -115,19 +115,19 @@ public class OnClickView {
             public void run() {
                 AnimationSet animationSet = new AnimationSet(true);
                 AlphaAnimation alphaAnimation = new AlphaAnimation(1f,0.2f);
-                alphaAnimation.setDuration(200);
+                alphaAnimation.setDuration(500);
                 ScaleAnimation scaleAnimation = new ScaleAnimation(
                         0.9f,1.1f,
                         0.9f,1.1f,
                         Animation.RELATIVE_TO_SELF,0f,
                         Animation.RELATIVE_TO_SELF,0f);
-                scaleAnimation.setDuration(200);
+                scaleAnimation.setDuration(500);
                 TranslateAnimation translateAnimation = new TranslateAnimation(
                         Animation.RELATIVE_TO_SELF,0.05f,
                         Animation.RELATIVE_TO_SELF,-0.05f,
                         Animation.RELATIVE_TO_SELF,0.05f,
                         Animation.RELATIVE_TO_SELF,-0.05f);
-                translateAnimation.setDuration(200);
+                translateAnimation.setDuration(500);
                 animationSet.addAnimation(alphaAnimation);
                 animationSet.addAnimation(scaleAnimation);
                 animationSet.addAnimation(translateAnimation);
@@ -141,25 +141,25 @@ public class OnClickView {
             public void run() {
                 AnimationSet animationSet = new AnimationSet(true);
                 AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f,0f);
-                alphaAnimation.setDuration(600);
+                alphaAnimation.setDuration(300);
                 ScaleAnimation scaleAnimation = new ScaleAnimation(
                         1.1f,1.2f,
                         1.1f,1.2f,
                         Animation.RELATIVE_TO_SELF,0f,
                         Animation.RELATIVE_TO_SELF,0f);
-                scaleAnimation.setDuration(600);
+                scaleAnimation.setDuration(300);
                 TranslateAnimation translateAnimation = new TranslateAnimation(
                         Animation.RELATIVE_TO_SELF,-0.05f,
                         Animation.RELATIVE_TO_SELF,-0.1f,
                         Animation.RELATIVE_TO_SELF,-0.05f,
                         Animation.RELATIVE_TO_SELF,-0.1f);
-                translateAnimation.setDuration(600);
+                translateAnimation.setDuration(300);
                 animationSet.addAnimation(alphaAnimation);
                 animationSet.addAnimation(scaleAnimation);
                 animationSet.addAnimation(translateAnimation);
                 view.startAnimation(animationSet);
             }
-        },900);
+        },1200);
     }
 
     public static void logo(final View view){

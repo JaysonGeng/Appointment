@@ -10,7 +10,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -92,7 +92,8 @@
 
         <activity android:name=".group.GroupChart">
         </activity>
-        <activity android:name=".group.GroupActivity">
+        <activity android:name=".group.GroupActivity"
+            android:label="群组">
         </activity>
         <activity android:name="chart.ChartActivity">
         </activity>

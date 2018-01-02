@@ -3,6 +3,8 @@ package com.example.appointment.View;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,8 +31,6 @@ import com.example.appointment.message.AMessageType;
 import com.example.appointment.message.ContactInfoList;
 import com.example.appointment.message.ThreadUtils;
 import com.example.appointment.page.Main;
-import com.example.appointment.page.Main2;
-import com.example.appointment.page.MainActivity;
 import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -71,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     conn.addOnMessageListener(listener);
                 } catch (Exception e) {
                     ThreadUtils.runInUiThread(new Runnable() {
-
                         public void run() {
                             Toast.makeText(getBaseContext(), "网络连接故障！", Toast.LENGTH_SHORT).show();
                         }
@@ -95,6 +95,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initEvent() {
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
         animationSet = new AnimationSet(true);
         alphaAnimation = new AlphaAnimation(0, 1);
         translateAnimation = new TranslateAnimation(
@@ -150,7 +155,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 username = usernameInputting.getText().toString();
                 password = passwordInputting.getText().toString();
 
-
                 ThreadUtils.runInSubThread(new Runnable() {
                     public void run() {
                         try {
@@ -160,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             conn.sendMessage(msg);
                         } catch (Exception e) {
                             ThreadUtils.runInUiThread(new Runnable() {
-
                                 public void run() {
                                     Toast.makeText(getBaseContext(), "出现异常，请检查后重试", Toast.LENGTH_SHORT).show();
                                 }
@@ -168,7 +171,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
 
                 //记住密码
                 if (rememberPass.isChecked()) {
@@ -211,43 +213,57 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             ThreadUtils.runInUiThread(new Runnable() {
 
                 public void run() {
-                    if (AMessageType.MSG_TYPE_BUDDYLIST.equals(msg.type)) {
-                        // 登录成功，返回的数据是好友列表
-                        // 有用的信息是content的json串
-                        Toast.makeText(getBaseContext(), "登录成功 ！", Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (AMessageType.MSG_TYPE_BUDDYLIST.equals(msg.type)) {
+                                // 登录成功，返回的数据是好友列表
+                                // 有用的信息是content的json串
+                                Toast.makeText(getBaseContext(), "登录成功 ！", Toast.LENGTH_SHORT).show();
 
-                        LoginActivity.instance.finish();
-                        // 将连接conn保存到application中，作为一个长连接存在，这样在其他的activity，server中都能拿到这个连接，保证了项目连接的唯一性
-                        // 新建一个application类，给出get，set方法，使用application可以在整个项目中共享数据
-                        app = (ImApp) getApplication();
-                        //保存一个长连接
-                        app.setMyConn(conn);
-                        // 保存好友列表的json串
-                        app.setBuddyListJson(msg.content);
-                        Gson gson = new Gson();
-                        ContactInfoList Alist = gson.fromJson(msg.content,
-                                ContactInfoList.class);
-                        // 保存当前登录用户的账号
-                        app.setMyNumber(Long.parseLong(username));
+                                LoginActivity.instance.finish();
+                                // 将连接conn保存到application中，作为一个长连接存在，这样在其他的activity，server中都能拿到这个连接，保证了项目连接的唯一性
+                                // 新建一个application类，给出get，set方法，使用application可以在整个项目中共享数据
+                                app = (ImApp) getApplication();
+                                //保存一个长连接
+                                app.setMyConn(conn);
+                                // 保存好友列表的json串
+                                app.setBuddyListJson(msg.content);
+                                Gson gson = new Gson();
+                                ContactInfoList Alist = gson.fromJson(msg.content, ContactInfoList.class);
+                                // 保存当前登录用户的账号
+                                app.setMyNumber(Long.parseLong(username));
+                                app.setMyName(msg.fromName);
+                                app.setMyPassword(password);
+                                // 打开主页
+                                animationSet = new AnimationSet(true);
+                                alphaAnimation = new AlphaAnimation(1,0);
+                                alphaAnimation.setDuration(1600);
+                                animationSet.addAnimation(alphaAnimation);
 
-                        app.setMyName(msg.fromName);
-                        app.setMyPassword(password);
-                        // 打开主页
-                        Intent intent = new Intent();
-                        intent.setClass(getBaseContext(), Main.class);
-                        startActivity(intent);
-                        app.setstate(true);
+                                transition.startAnimation(animationSet);
+                                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                                transition.setVisibility(View.GONE);
 
-                    } else if (AMessageType.MSG_TYPE_GROUPLIST.equals(msg.type)) {
-                        app.setGroupListJson(msg.content);
-                    } else if (AMessageType.MSG_TYPE_PLANLIST.equals(msg.type)) {
-                        app.setPlanListJson(msg.content);
-                        finish();
-                    } else if (AMessageType.MSG_TYPE_FAIL.equals(msg.type)) {
-                        Toast.makeText(getBaseContext(), msg.content, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getBaseContext(), "出现异常，请检查后重试", Toast.LENGTH_SHORT).show();
-                    }
+                                Intent intent = new Intent();
+                                intent.setClass(getBaseContext(), Main.class);
+                                startActivity(intent);
+                                finish();
+                                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                                app.setstate(true);
+                            } else if (AMessageType.MSG_TYPE_GROUPLIST.equals(msg.type)) {
+                                app.setGroupListJson(msg.content);
+                            } else if (AMessageType.MSG_TYPE_PLANLIST.equals(msg.type)) {
+                                app.setPlanListJson(msg.content);
+                                finish();
+                            } else if (AMessageType.MSG_TYPE_FAIL.equals(msg.type)) {
+                                Toast.makeText(getBaseContext(), msg.content, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getBaseContext(), "出现异常，请检查后重试", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    },1600);
+
                 }
             });
         }

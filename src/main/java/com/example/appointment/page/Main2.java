@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.example.appointment.Adapter.ContentModel;
 import com.example.appointment.Adapter.UserAdapter;
 import com.example.appointment.Entity.User;
 import com.example.appointment.R;
@@ -48,14 +47,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-/**
- * Created by MichaelOD on 2017/12/27.
- */
 public class Main2 extends FragmentActivity implements View.OnClickListener {
 
     private DrawerLayout drawerLayout;
-    private List<ContentModel> list;
 
     private ImageView leftMenu, rightMenu;
     private FragmentManager fm;
