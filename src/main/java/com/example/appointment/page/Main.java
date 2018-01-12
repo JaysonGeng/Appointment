@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.example.appointment.Dao.ActivityCollector;
 import com.example.appointment.Dao.OnClickView;
 import com.example.appointment.R;
+import com.example.appointment.View.CommitActivity;
 import com.example.appointment.View.FeedbackActivity;
 import com.example.appointment.View.LoginActivity;
 import com.example.appointment.View.PersonalInformationActivity;
@@ -59,7 +61,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private TextView chatting_checked;
     private NavigationView navView;
     private LinearLayout transition;
-
+    private FloatingActionButton commit;
     private TextView usersign;
     ImApp app;
     public int h = R.id.ll_tab1_message;//目前显示的页面变量
@@ -99,10 +101,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         activity_checked = findViewById(R.id.activity_list_checked_text_view_Main);
         friend_checked = findViewById(R.id.friend_list_checked_text_view_Main);
         chatting_checked = findViewById(R.id.chatting_list_checked_text_view_Main);
+        commit = findViewById(R.id.commit_floating_button_Main);
 
         message.setOnClickListener(this);
         friend.setOnClickListener(this);
         activity.setOnClickListener(this);
+        commit.setOnClickListener(this);
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             getWindow().setStatusBarColor(Color.BLACK);
@@ -293,6 +297,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         h = view.getId();
         switch (h) {
+            case R.id.commit_floating_button_Main:
+                Intent intent = new Intent();
+                intent.setClass(Main.this,CommitActivity.class);
+                startActivity(intent);
+                break;
             case R.id.ll_tab1_message:
                 OnClickView.click_small(message,chatting_checked);
                 new Handler().postDelayed(new Runnable() {

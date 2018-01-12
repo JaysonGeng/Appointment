@@ -1,14 +1,33 @@
 package com.example.appointment.View;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,6 +35,9 @@ import android.widget.Toast;
 
 import com.example.appointment.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -30,6 +52,11 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
     private EditText detail;
     private ImageView select_photo;
     private Button commit;
+    private Uri imageUri;
+    private ImageView activity_picture;
+    private static final int TAKE_PHOTO = 1;
+    private static final int CHOOSE_PHOTO = 2;
+    private String imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +77,7 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
         detail = findViewById(R.id.detail_edit_text_Commit);
         select_photo = findViewById(R.id.select_photo_image_view_Commit);
         commit = findViewById(R.id.commit_button_Commit);
+        activity_picture = findViewById(R.id.activity_picture_show_image_view_Commit);
     }
 
     private void initEvent(){
@@ -92,10 +120,52 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view){
         switch (view.getId()){
             case R.id.select_photo_image_view_Commit:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(CommitActivity.this);
+                dialog.setTitle("选择图片");
+                dialog.setMessage("拍照或从手机相册中选择");
+                dialog.setCancelable(true);
+                dialog.setPositiveButton("拍照", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+                        try{
+                            if(outputImage.exists()){
+                                outputImage.delete();
+                            }
+                            outputImage.createNewFile();
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
+                        if(Build.VERSION.SDK_INT>=24){
+                            imageUri = FileProvider.getUriForFile(CommitActivity.this,"com.example.appointment.fileprovider",outputImage);
+                        }else {
+                            imageUri = Uri.fromFile(outputImage);
+                        }
+                        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                        startActivityForResult(intent,TAKE_PHOTO);
+                    }
+                });
+                dialog.setNegativeButton("从手机相册中选择", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(ContextCompat.checkSelfPermission(CommitActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(CommitActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+                        }else {
+                            openAlbum();
+                        }
+                    }
+                });
+                dialog.show();
                 break;
             case R.id.commit_button_Commit:
                 if(isInputValid()){
                     //
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("image",imagePath);
+                    editor.apply();
+                    Toast.makeText(CommitActivity.this,"发布成功",Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
@@ -107,15 +177,21 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
         boolean b = !place.getText().toString().equals("");
         if(a){
             if (b){
-                try {
-                    int y = Integer.parseInt(year.getText().toString());
-                    int m = Integer.parseInt(month.getText().toString());
-                    int d = Integer.parseInt(day.getText().toString());
-                    return isDateValid(y,m,d);
-                }catch (NumberFormatException e){
-                    Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                if(imagePath != null){
+                    try {
+                        int y = Integer.parseInt(year.getText().toString());
+                        int m = Integer.parseInt(month.getText().toString());
+                        int d = Integer.parseInt(day.getText().toString());
+                        return isDateValid(y,m,d);
+                    }catch (NumberFormatException e){
+                        Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }else {
+                    Toast.makeText(CommitActivity.this,"请选择一张图片",Toast.LENGTH_SHORT).show();
                     return false;
                 }
+
             }else {
                 Toast.makeText(CommitActivity.this,"请输入活动地点",Toast.LENGTH_SHORT).show();
                 return false;
@@ -176,6 +252,81 @@ public class CommitActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(CommitActivity.this,"日期输入有误",Toast.LENGTH_SHORT).show();
                 return false;
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        switch (requestCode){
+            case TAKE_PHOTO:
+                if(resultCode == RESULT_OK){
+                    try{
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        activity_picture.setImageBitmap(bitmap);
+                    }catch (FileNotFoundException e){
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case CHOOSE_PHOTO:
+                if(resultCode == RESULT_OK){
+                    if(Build.VERSION.SDK_INT >= 19){
+                        handleImageBeforeKitKat(data);
+                    }else {
+
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permission,int[] grantResults){
+        switch (requestCode){
+            case 1:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    openAlbum();
+                }else {
+                    Toast.makeText(CommitActivity.this,"没有相册权限",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+        }
+    }
+
+    private void openAlbum(){
+        Intent intent = new Intent("android.intent.action.GET_CONTENT");
+        intent.setType("image/*");
+        startActivityForResult(intent,CHOOSE_PHOTO);
+    }
+
+    private void handleImageBeforeKitKat(Intent data){
+        Uri uri = data.getData();
+        String imagePath = getImagePath(uri,null);
+        displayImage(imagePath);
+    }
+
+    private String getImagePath(Uri uri,String selection){
+        String path = null;
+        Cursor cursor = getContentResolver().query(uri,null,selection,null ,null );
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                imagePath = path;
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
+    private void displayImage(String imagePath){
+        if(imagePath != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            activity_picture.setImageBitmap(bitmap);
+        }else {
+            Toast.makeText(CommitActivity.this,"图片获取失败",Toast.LENGTH_SHORT).show();
         }
     }
 

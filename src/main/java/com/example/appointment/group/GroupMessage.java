@@ -36,8 +36,8 @@ public class GroupMessage extends AppCompatActivity {
 
 	private Toolbar toolbar;
 	private CollapsingToolbarLayout toolbarLayout;
-	private TextView groupnumber_text;
 	private TextView groupdescribe_text;
+	private TextView groupname_text;
 	private Button button;
 	ImApp app;
 	private String name;
@@ -50,8 +50,8 @@ public class GroupMessage extends AppCompatActivity {
 		setContentView(R.layout.groupmessage);
 		toolbar = findViewById(R.id.toolbar_GroupMessage);
 		toolbarLayout = findViewById(R.id.collapsing_toolbar_GroupMessage);
-		groupnumber_text=(TextView)findViewById(R.id.groupnumber_text);
 		groupdescribe_text=(TextView)findViewById(R.id.groupdescribe_text);
+		groupname_text = findViewById(R.id.usernumber_text);
 		button = findViewById(R.id.send_message_button_GroupMessage);
 //		MainActivity.t=this;
 		app = (ImApp) getApplication();
@@ -70,7 +70,7 @@ public class GroupMessage extends AppCompatActivity {
 		GroupList newList = gson.fromJson(newGroupListJson, GroupList.class);
 		name=newList.get(toAccount).name;
 		toolbarLayout.setTitle(name);
-		groupnumber_text.setText("" + toAccount);
+		groupname_text.setText(toAccount+"");
 		groupdescribe_text.setText(newList.get(toAccount).describe);
 		Main2.on3=true;
 		

@@ -34,7 +34,7 @@ public class AConnection
 
 
 	//创建与服务器之间的连接
-	public void connect() throws UnknownHostException, IOException {
+	public void connect() throws IOException ,UnknownHostException{
 		// 创建连接
 		client = new Socket(host, port);
 		reader = new DataInputStream(client.getInputStream());
@@ -91,8 +91,8 @@ public class AConnection
 
 				} catch (IOException e) {
 					e.printStackTrace();
+					break;
 				}
-
 			}
 
 		}

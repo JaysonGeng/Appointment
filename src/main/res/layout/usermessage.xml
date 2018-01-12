@@ -1,135 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<android.support.design.widget.AppBarLayout
+    android:id="@+id/appbar_UserDetail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="300dp">
 
-    <LinearLayout
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar_UserMessage"
         android:layout_width="match_parent"
-        android:id="@+id/usermain"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#026464"
-        android:padding="20dip">
+        android:layout_height="match_parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentScrim="@color/colorPrimaryDark"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
+            android:background="@drawable/toolbarbackground"
             android:padding="20dip">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/ic_launcher">
-            </ImageView>
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="30sp"/>
-        </LinearLayout>
-    </LinearLayout>
+        </RelativeLayout>
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_GroupMessage"
+            android:layout_width="match_parent"
+            android:background="@drawable/toolbarbackground"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"/>
 
-    <RelativeLayout
-        android:id="@+id/usernumber_bar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="48dp"
-            android:id="@+id/i1"
-            android:layout_height="48dp"
-            android:padding="12dp"
-            android:src="@drawable/p_center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_toRightOf="@id/i1"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:text="帐号"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/usernumber_text"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+    </android.support.design.widget.CollapsingToolbarLayout>
 
-    <RelativeLayout
-        android:id="@+id/usersign_bar"
+</android.support.design.widget.AppBarLayout>
+
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/usernumber_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="账号："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/usernumber_text"
+                android:layout_width="240dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="120dp"/>
+
+        </RelativeLayout>
+
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="12dp"
-            android:id="@+id/i2"
-            android:src="@drawable/p_center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_toRightOf="@id/i2"
-            android:id="@+id/k2"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:text="个性签名"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/usersign_text"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginRight="70dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/k2"
-            android:layout_marginBottom="20dp"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3"/>
 
-    <RelativeLayout
-        android:id="@+id/other_bar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="12dp"
-            android:id="@+id/i3"
-            android:src="@drawable/p_center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_toRightOf="@id/i3"
-            android:text="其他资料"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F2F2F2"/>
 
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="11dp"
-            android:text="我还没加上"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3"/>
 
-    <Button
-        android:id="@+id/user_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"/>
+        <RelativeLayout
+            android:id="@+id/usersign_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="个性签名："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/usersign_text"
+                android:layout_width="240dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="120dp"/>
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F2F2F2"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <Button
+                android:id="@+id/user_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

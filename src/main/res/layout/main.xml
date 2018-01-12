@@ -23,11 +23,23 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/commit_floating_button_Main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:src="@drawable/commitactivityicon"
+                android:layout_margin="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
         <fragment
             android:id="@+id/buttonbar_fragment_Main"

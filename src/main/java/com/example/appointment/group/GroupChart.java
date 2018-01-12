@@ -52,7 +52,7 @@ public class GroupChart extends AppCompatActivity{
 	private Toolbar toolbar;
 	private ChartMessageAdapter adapter;
 	// 这是点击的用户，也就是你要发消息给谁
-	private String toNick;// 要发送给谁
+	private String toNick = "";// 要发送给谁
 	private long toAccount;// 要发送的账号
 	private long fromAccount;// 我的账号，我要跟谁聊天
 	private String inputStr;// 聊天内容

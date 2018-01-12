@@ -9,6 +9,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -30,31 +35,28 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-public class UserMessage extends Activity {
+public class UserMessage extends AppCompatActivity {
 	private LinearLayout usermain;
-	private TextView username;
 	private RelativeLayout usernumber_bar;
 	private TextView usernumber_text;
 	private RelativeLayout usersign_bar;
 	private TextView usersign_text;
-	private RelativeLayout other_bar;
 	private TextView other_text;
 	private Button button;
+	private Toolbar toolbar;
 	long num;
 	ImApp app;
 	
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.usermessage);
-		usermain=(LinearLayout)findViewById(R.id.usermain);
-		username=(TextView)findViewById(R.id.username);
+
+		toolbar = findViewById(R.id.toolbar_GroupMessage);
 		usernumber_bar=(RelativeLayout)findViewById(R.id.usernumber_bar);
 		usernumber_text=(TextView)findViewById(R.id.usernumber_text);
 		usersign_bar=(RelativeLayout)findViewById(R.id.usersign_bar);
 		usersign_text=(TextView)findViewById(R.id.usersign_text);
-		other_bar=(RelativeLayout)findViewById(R.id.other_bar);
 		button=(Button)findViewById(R.id.user_button);
 //		MainActivity.t=this;
 		Main2.on3=true;
@@ -64,10 +66,17 @@ public class UserMessage extends Activity {
 		num = intent.getLongExtra("number", 0);
 		String newBuddyListJson = app.getBuddyListJson();
 		Gson gson = new Gson();
-		ContactInfoList newList = gson.fromJson(newBuddyListJson, ContactInfoList.class);
-		username.setText(newList.get(num).name);
-		usernumber_text.setText(""+num);
+		final ContactInfoList newList = gson.fromJson(newBuddyListJson, ContactInfoList.class);
+		usernumber_text.setText(num + "");
 		usersign_text.setText(newList.get(num).sign);
+
+		//加载工具栏
+		setSupportActionBar(toolbar);
+		ActionBar actionBar = getSupportActionBar();
+		if(actionBar != null){
+			actionBar.setDisplayHomeAsUpEnabled(true);
+			actionBar.setTitle(newList.get(num).name);
+		}
 		
 		//根据不同的状态显示按钮不同的文字
 		if(num==app.getMyNumber())
@@ -135,7 +144,7 @@ public class UserMessage extends Activity {
 					Intent intent = new Intent(UserMessage.this,ChartActivity.class);
 					// 将账号和个性签名带到下一个activity
 					intent.putExtra("account", ""+num);
-					intent.putExtra("nick", username.getText());
+					intent.putExtra("nick", newList.get(num).name);
 					UserMessage.this.startActivity(intent);
 				}
 			});
@@ -195,8 +204,28 @@ public class UserMessage extends Activity {
 			});
 		}
 	}
+
 	protected void onDestroy() {
 		super.onDestroy();
 		Main2.on3=false;
+	}
+
+	//加载toolbar菜单文件
+	public boolean onCreateOptionsMenu(Menu menu){
+		getMenuInflater().inflate(R.menu.toolbar_general,menu);
+		return true;
+	}
+
+	//设置工具栏按钮的点击事件
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+			case android.R.id.home:
+				finish();
+				break;
+			default:
+				break;
+		}
+		return true;
 	}
 }

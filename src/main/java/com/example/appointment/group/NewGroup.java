@@ -76,7 +76,7 @@ public class NewGroup extends Activity implements OnClickListener
 							ThreadUtils.runInUiThread(new Runnable() {
 
 								public void run() {
-									Toast.makeText(getBaseContext(), "出现异常，请检查后重试", 0).show();
+									Toast.makeText(getBaseContext(), "出现异常，请检查后重试", Toast.LENGTH_SHORT).show();
 								}
 							});
 						}
@@ -88,7 +88,7 @@ public class NewGroup extends Activity implements OnClickListener
 				ThreadUtils.runInUiThread(new Runnable() {
 
 					public void run() {
-						Toast.makeText(getBaseContext(), "群组名或简介不能为空！", 0).show();
+						Toast.makeText(getBaseContext(), "群组名或简介不能为空！", Toast.LENGTH_SHORT).show();
 					}
 				});
 			}
@@ -114,7 +114,7 @@ public class NewGroup extends Activity implements OnClickListener
 							Intent intent = new Intent(NewGroup.this,
 									GroupActivity.class);
 							startActivity(intent);
-							Toast.makeText(getBaseContext(), txt, 0).show();
+							Toast.makeText(getBaseContext(), txt, Toast.LENGTH_SHORT).show();
 							finish();
 						}
 					}

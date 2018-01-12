@@ -71,7 +71,7 @@ android:layout_height="match_parent">
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/groupnumber_text"
+                android:id="@+id/usernumber_text"
                 android:layout_width="240dp"
                 android:gravity="center"
                 android:layout_height="match_parent"
