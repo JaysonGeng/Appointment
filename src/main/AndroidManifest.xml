@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.appointment">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:name=".core.ImApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".View.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.UserAgreementActivity" />
+        <activity
+            android:name=".View.LoginActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".View.RegisterActivity"
+            android:theme="@style/QMUI.Compat.NoActionBar"
+            android:label="注册" />
+        <activity
+            android:name=".page.Main"
+            android:label="主界面"
+            android:theme="@style/QMUI.Compat.NoActionBar" />
+        <activity
+            android:name=".chart.UserMessage"
+            android:label="用户信息" />
+        <activity
+            android:name=".chart.ChartActivity"
+            android:label="聊天界面" />
+        <activity
+            android:name=".View.SettingActivity"
+            android:label="设置" />
+        <activity
+            android:name=".View.SearchActivity"
+            android:label="搜索" />
+        <activity
+            android:name=".View.CommitActivity"
+            android:label="发起活动" />
+        <activity
+            android:name=".View.FindPasswordActivity"
+            android:label="找回密码" />
+        <activity
+            android:name=".View.ActivityDetailActivity"
+            android:label="活动详情" />
+        <activity
+            android:name=".View.FeedbackActivity"
+            android:label="意见反馈" />
+        <activity
+            android:name=".View.PersonalInformationActivity"
+            android:label="个人信息" />
+        <activity
+            android:name=".View.ChangeInformationActivity"
+            android:label="修改个人信息" />
+        <activity
+            android:name=".View.ChangePasswordActivity"
+            android:label="修改密码" />
+        <activity
+            android:name=".View.UserAgreementShowActivity"
+            android:label="用户须知" />
+        <activity
+            android:name=".View.OurInformationActivity"
+            android:label="关于我们" />
+        <activity android:name=".View.UserDetailActivity" />
+        <activity android:name=".View.LogoActivity" />
+        <activity
+            android:name=".View.Text"
+            android:theme="@android:style/Theme.Dialog"></activity>
+        <activity android:name=".group.GroupChart"></activity>
+        <activity
+            android:name=".group.GroupActivity"
+            android:label="群组"></activity>
+        <activity android:name="chart.ChartActivity"></activity>
+        <activity android:name=".group.GroupMessage"></activity>
+        <activity android:name=".page.TabThree">
+            android:theme="@style/QMUI.Compat"</activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.appointment.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".View.Newactivity"></activity>
+    </application>
+
+</manifest>

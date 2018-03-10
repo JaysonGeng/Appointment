@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_UserDetail"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_UserMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentScrim="@color/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/toolbarbackground"
+                android:orientation="vertical"
+                android:padding="20dip"
+                android:theme="@style/QMUI.Compat">
+
+                <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/touxiang_send"
+                    app:qmui_border_color="@color/mysety"
+                    app:qmui_border_width="3px"
+                    app:qmui_is_circle="true" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_GroupMessage"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/toolbarbackground"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/usernumber_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="账号："
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/usernumber_text"
+                    android:layout_width="240dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="120dp"
+                    android:gravity="center" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F2F2F2" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <RelativeLayout
+                android:id="@+id/usersign_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="个性签名："
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/usersign_text"
+                    android:layout_width="240dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="120dp"
+                    android:gravity="center" />
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F2F2F2" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <Button
+                    android:id="@+id/user_button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

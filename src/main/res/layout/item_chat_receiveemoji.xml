@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:theme="@style/QMUI.Compat"
+    tools:context=".View.LoginActivity">
+
+    <!-- 时间 -->
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="2017 1209 22:00"
+        android:textColor="#717882"
+        android:textSize="15sp" />
+    <!-- 头像 -->
+
+
+    <!-- 大字 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/head"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            app:qmui_border_color="@color/mysety"
+            app:qmui_border_width="3px"
+            android:src="@drawable/touxiang_send"
+            app:qmui_is_circle="true"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <ImageView
+
+                android:id="@+id/emoji"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/e01" />
+        </LinearLayout>
+        <!-- 小字 -->
+    </LinearLayout>
+
+</LinearLayout>
